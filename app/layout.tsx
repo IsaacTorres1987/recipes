@@ -1,17 +1,17 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-import { Sidebar } from '@/components/sidebar'
-import { Toaster } from '@/components/ui/toaster'
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
+import { Sidebar } from "@/components/sidebar"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-  title: 'CircuFax - Infrastructure Component Intelligence Platform',
-  description: 'Manage structured component data and make lifecycle and procurement decisions using verified Digital Product Passports.',
+  title: "CircuFax - Infrastructure Component Intelligence Platform",
+  description: "Manage structured component data and make lifecycle and procurement decisions using verified Digital Product Passports.",
   icons: {
-    icon: '/icon.svg',
+    icon: "/icon.svg",
   },
 }
 
