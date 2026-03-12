@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: 'CircuFax - Infrastructure Component Intelligence Platform',
   description: 'Manage structured component data and make lifecycle and procurement decisions using verified Digital Product Passports.',
-  generator: 'v0.app',
   icons: {
     icon: '/icon.svg',
   },
