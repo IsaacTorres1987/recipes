@@ -3,16 +3,16 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Home, Database, Building2, ShieldCheck, Info, LayoutDashboard, FileText, Map, PlusCircle } from "lucide-react"
+import { Home, Database, Building2, ShieldCheck, Info, LayoutDashboard, FileText, Map, PlusCircle, FolderKanban, BarChart3 } from "lucide-react"
 
 const navItems = [
-  { href: "/", label: "Home", icon: Home },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/assets", label: "Assets", icon: Building2 },
   { href: "/registry", label: "Component Registry", icon: Database },
   { href: "/register", label: "Register Component", icon: PlusCircle },
-  { href: "/assets", label: "Asset Map", icon: Map },
-  { href: "/procurement", label: "Procurement Case", icon: FileText },
-  { href: "/verification", label: "Verification", icon: ShieldCheck },
+  { href: "/procurement-cases", label: "Procurement Cases", icon: FolderKanban },
+  { href: "/verification", label: "Verification Layer", icon: ShieldCheck },
+  { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/about", label: "About", icon: Info },
 ]
 

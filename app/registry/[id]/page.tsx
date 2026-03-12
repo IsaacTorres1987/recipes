@@ -185,11 +185,59 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardHeader>
         <CardContent>
           <p className="text-foreground leading-relaxed mb-2">
-            This verified infrastructure component may be considered for reuse in infrastructure replacement tenders.
+            This verified infrastructure component may be considered for reuse in bridge replacement tenders.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Engineering validation, condition assessment, and inspection evidence are available through the Digital Product Passport.
           </p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Technical Fit</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.verificationStatus === "Verified" 
+                  ? "bg-success/10 text-success border-success/20" 
+                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+              )}>
+                {component.verificationStatus === "Verified" ? "Yes" : "Pending"}
+              </Badge>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Verification Complete</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.verificationStatus === "Verified" 
+                  ? "bg-success/10 text-success border-success/20" 
+                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+              )}>
+                {component.verificationStatus === "Verified" ? "Yes" : "Pending"}
+              </Badge>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Reuse Feasible</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.conditionScore <= 3
+                  ? "bg-success/10 text-success border-success/20" 
+                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+              )}>
+                {component.conditionScore <= 2 ? "High" : component.conditionScore === 3 ? "Medium" : "Low"}
+              </Badge>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Tender Suitability</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.verificationStatus === "Verified" && component.conditionScore <= 3
+                  ? "bg-success/10 text-success border-success/20" 
+                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+              )}>
+                {component.verificationStatus === "Verified" && component.conditionScore <= 3 ? "Suitable" : "Conditional"}
+              </Badge>
+            </div>
+          </div>
+          
           <AddToProcurementButton componentId={component.id} />
         </CardContent>
       </Card>

@@ -352,5 +352,283 @@ export const dashboardStats = {
   totalComponents: 124,
   verifiedComponents: 92,
   averageConditionScore: 3.2,
-  reuseCandidates: 18
+  reuseCandidates: 18,
+  activeProcurementCases: 3,
+  procurementReadinessAvg: 78
 }
+
+export interface ProcurementCase {
+  id: string
+  projectName: string
+  client: string
+  assetType: string
+  location: string
+  procurementProcedure: string
+  procurementStage: "Tender Preparation" | "Evaluation" | "Selection" | "Contract Award"
+  designLife: string
+  selectedComponents: number
+  verifiedComponents: number
+  verificationCoverage: number
+  dppCoverage: number
+  structuralEvidenceComplete: number
+  circularityMatch: "High" | "Medium" | "Low"
+  readinessScore: number
+  tenderRequirements: {
+    technical: {
+      minSpan: string
+      designStandard: string
+      loadClass: string
+      concreteClass: string
+    }
+    circularity: {
+      reusePreferred: boolean
+      demountabilityRequired: boolean
+      lifecycleExtension: boolean
+      co2ReductionConsidered: boolean
+    }
+    evidence: {
+      inspectionReport: boolean
+      structuralRecalculation: boolean
+      dppAvailable: boolean
+      verificationAuthority: boolean
+    }
+  }
+  components: {
+    id: string
+    type: string
+    span: string
+    conditionScore: number
+    verificationStatus: "Verified" | "Pending" | "Unverified"
+    reusePotential: "High" | "Medium" | "Low"
+    procurementRelevance: "Suitable" | "Conditional" | "Not Suitable"
+  }[]
+  evidenceChecklist: {
+    inspectionReport: boolean
+    structuralCapacity: boolean
+    materialVerification: boolean
+    dppLink: boolean
+    verifierIdentified: boolean
+  }
+}
+
+export const procurementCases: ProcurementCase[] = [
+  {
+    id: "case-n203",
+    projectName: "Bridge Replacement – N203",
+    client: "Province of North Holland",
+    assetType: "Road Bridge",
+    location: "N203, km 12.5",
+    procurementProcedure: "Open Tender",
+    procurementStage: "Tender Preparation",
+    designLife: "50 years",
+    selectedComponents: 4,
+    verifiedComponents: 3,
+    verificationCoverage: 75,
+    dppCoverage: 100,
+    structuralEvidenceComplete: 75,
+    circularityMatch: "High",
+    readinessScore: 82,
+    tenderRequirements: {
+      technical: {
+        minSpan: "20–30 m",
+        designStandard: "Eurocode EN 1992",
+        loadClass: "LM1",
+        concreteClass: "C40/50 or higher"
+      },
+      circularity: {
+        reusePreferred: true,
+        demountabilityRequired: true,
+        lifecycleExtension: true,
+        co2ReductionConsidered: true
+      },
+      evidence: {
+        inspectionReport: true,
+        structuralRecalculation: true,
+        dppAvailable: true,
+        verificationAuthority: true
+      }
+    },
+    components: [
+      {
+        id: "DEMO-GIRDER-01",
+        type: "Precast Girder",
+        span: "24.5 m",
+        conditionScore: 3,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      },
+      {
+        id: "DEMO-BEAM-02",
+        type: "Box Beam",
+        span: "18.0 m",
+        conditionScore: 2,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      },
+      {
+        id: "DEMO-COLUMN-04",
+        type: "Concrete Column",
+        span: "8.5 m",
+        conditionScore: 2,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      },
+      {
+        id: "DEMO-SLAB-03",
+        type: "Deck Slab",
+        span: "12.0 m",
+        conditionScore: 4,
+        verificationStatus: "Pending",
+        reusePotential: "Medium",
+        procurementRelevance: "Conditional"
+      }
+    ],
+    evidenceChecklist: {
+      inspectionReport: true,
+      structuralCapacity: true,
+      materialVerification: true,
+      dppLink: true,
+      verifierIdentified: false
+    }
+  },
+  {
+    id: "case-haarlem",
+    projectName: "Municipal Bridge Upgrade – Haarlem",
+    client: "Municipality of Haarlem",
+    assetType: "Pedestrian Bridge",
+    location: "Spaarne Canal, Central District",
+    procurementProcedure: "Restricted Tender",
+    procurementStage: "Evaluation",
+    designLife: "40 years",
+    selectedComponents: 2,
+    verifiedComponents: 2,
+    verificationCoverage: 100,
+    dppCoverage: 100,
+    structuralEvidenceComplete: 100,
+    circularityMatch: "High",
+    readinessScore: 94,
+    tenderRequirements: {
+      technical: {
+        minSpan: "15–20 m",
+        designStandard: "Eurocode EN 1992",
+        loadClass: "LM4 (pedestrian)",
+        concreteClass: "C35/45 or higher"
+      },
+      circularity: {
+        reusePreferred: true,
+        demountabilityRequired: false,
+        lifecycleExtension: true,
+        co2ReductionConsidered: true
+      },
+      evidence: {
+        inspectionReport: true,
+        structuralRecalculation: true,
+        dppAvailable: true,
+        verificationAuthority: true
+      }
+    },
+    components: [
+      {
+        id: "DEMO-BEAM-02",
+        type: "Box Beam",
+        span: "18.0 m",
+        conditionScore: 2,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      },
+      {
+        id: "DEMO-COLUMN-04",
+        type: "Concrete Column",
+        span: "8.5 m",
+        conditionScore: 2,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      }
+    ],
+    evidenceChecklist: {
+      inspectionReport: true,
+      structuralCapacity: true,
+      materialVerification: true,
+      dppLink: true,
+      verifierIdentified: true
+    }
+  },
+  {
+    id: "case-a7",
+    projectName: "Viaduct Rehabilitation – A7",
+    client: "Rijkswaterstaat",
+    assetType: "Highway Viaduct",
+    location: "A7, km 45.2–46.8",
+    procurementProcedure: "Competitive Dialogue",
+    procurementStage: "Selection",
+    designLife: "100 years",
+    selectedComponents: 3,
+    verifiedComponents: 1,
+    verificationCoverage: 33,
+    dppCoverage: 67,
+    structuralEvidenceComplete: 40,
+    circularityMatch: "Medium",
+    readinessScore: 58,
+    tenderRequirements: {
+      technical: {
+        minSpan: "30–40 m",
+        designStandard: "Eurocode EN 1993 (Steel)",
+        loadClass: "LM1 Heavy Traffic",
+        concreteClass: "C50/60 or S355 Steel"
+      },
+      circularity: {
+        reusePreferred: true,
+        demountabilityRequired: true,
+        lifecycleExtension: true,
+        co2ReductionConsidered: true
+      },
+      evidence: {
+        inspectionReport: true,
+        structuralRecalculation: true,
+        dppAvailable: true,
+        verificationAuthority: true
+      }
+    },
+    components: [
+      {
+        id: "DEMO-GIRDER-05",
+        type: "Steel Plate Girder",
+        span: "32.0 m",
+        conditionScore: 3,
+        verificationStatus: "Unverified",
+        reusePotential: "Medium",
+        procurementRelevance: "Conditional"
+      },
+      {
+        id: "DEMO-GIRDER-01",
+        type: "Precast Girder",
+        span: "24.5 m",
+        conditionScore: 3,
+        verificationStatus: "Verified",
+        reusePotential: "High",
+        procurementRelevance: "Suitable"
+      },
+      {
+        id: "DEMO-SLAB-03",
+        type: "Deck Slab",
+        span: "12.0 m",
+        conditionScore: 4,
+        verificationStatus: "Pending",
+        reusePotential: "Low",
+        procurementRelevance: "Conditional"
+      }
+    ],
+    evidenceChecklist: {
+      inspectionReport: true,
+      structuralCapacity: false,
+      materialVerification: false,
+      dppLink: true,
+      verifierIdentified: false
+    }
+  }
+]
