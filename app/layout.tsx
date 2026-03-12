@@ -5,7 +5,7 @@ import './globals.css'
 import { Sidebar } from '@/components/sidebar'
 import { Toaster } from '@/components/ui/toaster'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
   title: 'CircuFax - Infrastructure Component Intelligence Platform',
