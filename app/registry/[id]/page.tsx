@@ -7,6 +7,7 @@ import { ArrowLeft, ExternalLink, ShieldCheck, Box, Layers, Activity, Gauge, Fil
 import { components } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { AddToProcurementButton } from "@/components/add-to-procurement-button"
+import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -247,6 +248,7 @@ export default async function ComponentDetailPage({ params }: PageProps) {
           <CardTitle className="text-base flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-success" />
             Verification
+            <InfoTooltip content={tooltipDefinitions.verificationLayer} />
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -273,10 +275,13 @@ export default async function ComponentDetailPage({ params }: PageProps) {
               <p className="font-medium">{component.verification.timestamp}</p>
             </div>
           </div>
-          <Button className="gap-2 bg-primary hover:bg-primary/90">
-            Open Digital Product Passport
-            <ExternalLink className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button className="gap-2 bg-primary hover:bg-primary/90">
+              Open Digital Product Passport
+              <ExternalLink className="h-4 w-4" />
+            </Button>
+            <InfoTooltip content={tooltipDefinitions.dpp} />
+          </div>
         </CardContent>
       </Card>
     </div>

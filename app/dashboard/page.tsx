@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress"
 import { Database, ShieldCheck, Activity, Recycle, FolderKanban, ArrowRight, Gauge } from "lucide-react"
 import { dashboardStats, procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
 import {
   Bar,
   BarChart,
@@ -52,6 +53,7 @@ const statCards = [
     icon: ShieldCheck,
     color: "text-success",
     bgColor: "bg-success/10",
+    tooltip: tooltipDefinitions.verificationLayer,
   },
   {
     title: "Average Condition Score",
@@ -59,6 +61,7 @@ const statCards = [
     icon: Activity,
     color: "text-yellow-600",
     bgColor: "bg-yellow-500/10",
+    tooltip: tooltipDefinitions.conditionScore,
   },
   {
     title: "Reuse Candidates",
@@ -66,6 +69,7 @@ const statCards = [
     icon: Recycle,
     color: "text-primary",
     bgColor: "bg-primary/10",
+    tooltip: tooltipDefinitions.reuseCandidate,
   },
 ]
 
@@ -106,7 +110,10 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.title}</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    {stat.title}
+                    {stat.tooltip && <InfoTooltip content={stat.tooltip} />}
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -138,7 +145,10 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">{avgReadiness}%</p>
-                <p className="text-sm text-muted-foreground">Avg Procurement Readiness</p>
+                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                  Avg Procurement Readiness
+                  <InfoTooltip content={tooltipDefinitions.procurementReadiness} />
+                </p>
               </div>
             </div>
           </CardContent>
@@ -219,7 +229,10 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">NEN 2767 Condition Score Distribution</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2">
+              NEN 2767 Condition Score Distribution
+              <InfoTooltip content={tooltipDefinitions.conditionScore} />
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-80">

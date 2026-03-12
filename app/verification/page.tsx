@@ -12,6 +12,7 @@ import {
 import { ExternalLink, ShieldCheck } from "lucide-react"
 import { verificationRecords } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
 
 export default function VerificationPage() {
   const getStatusColor = (status: string) => {
@@ -31,6 +32,7 @@ export default function VerificationPage() {
         <div className="flex items-center gap-2 mb-2">
           <ShieldCheck className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold text-foreground">Verification Registry</h1>
+          <InfoTooltip content={tooltipDefinitions.verificationLayer} />
         </div>
         <p className="text-muted-foreground">
           Track and verify Digital Product Passports with blockchain-anchored hashes for all infrastructure components.

@@ -32,6 +32,7 @@ import {
 } from "lucide-react"
 import { procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -447,7 +448,10 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
                 <span className="font-semibold">{caseData.verifiedComponents}/{caseData.selectedComponents}</span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">DPP Coverage</span>
+                <span className="text-muted-foreground flex items-center gap-1">
+                  DPP Coverage
+                  <InfoTooltip content={tooltipDefinitions.dpp} />
+                </span>
                 <span className="font-semibold">{caseData.dppCoverage}%</span>
               </div>
               <div className="flex items-center justify-between text-sm">
@@ -455,7 +459,10 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
                 <span className="font-semibold">{caseData.structuralEvidenceComplete}%</span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Circularity Match</span>
+                <span className="text-muted-foreground flex items-center gap-1">
+                  Circularity Match
+                  <InfoTooltip content={tooltipDefinitions.circularityMatch} />
+                </span>
                 <Badge variant="outline" className={cn("font-medium", getPotentialColor(caseData.circularityMatch))}>
                   {caseData.circularityMatch}
                 </Badge>
@@ -464,7 +471,10 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
 
             <div className="pt-4 border-t border-primary/20">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold">Procurement Readiness Score</span>
+                <span className="font-semibold flex items-center gap-1">
+                  Procurement Readiness Score
+                  <InfoTooltip content={tooltipDefinitions.procurementReadiness} />
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <span className={cn(
