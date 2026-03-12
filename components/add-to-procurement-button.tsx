@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/hooks/use-toast"
 import { Plus } from "lucide-react"
 
 interface AddToProcurementButtonProps {
@@ -10,9 +11,14 @@ interface AddToProcurementButtonProps {
 
 export function AddToProcurementButton({ componentId }: AddToProcurementButtonProps) {
   const router = useRouter()
+  const { toast } = useToast()
 
   const handleClick = () => {
-    router.push("/procurement")
+    toast({
+      title: "Component Added",
+      description: `${componentId} has been added to the procurement case.`,
+    })
+    router.push("/procurement-cases/case-n203")
   }
 
   return (
