@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: 'Manage structured component data and make lifecycle and procurement decisions using verified Digital Product Passports.',
   icons: {
     icon: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
