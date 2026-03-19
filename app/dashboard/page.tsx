@@ -41,34 +41,61 @@ const componentTypeData = [
 
 const workflowSteps = [
   {
-    icon: Building2,
-    title: "Infrastructure Assets",
-    description: "Capture data from existing infrastructure components",
-  },
-  {
+    step: 1,
     icon: Database,
-    title: "Component Registry",
-    description: "Organize and manage component technical data",
+    title: "Register Components",
+    description: "Capture geometry, materials, condition, and structural data.",
   },
   {
+    step: 2,
     icon: ShieldCheck,
-    title: "Verification (DPP)",
-    description: "Link to verified Digital Product Passports via Circularise",
+    title: "Link Verified DPPs",
+    description: "Connect components to trusted verification via Circularise.",
   },
   {
+    step: 3,
     icon: Share2,
-    title: "Supply Chain Sharing",
-    description: "Share verified data across stakeholders",
+    title: "Share Data",
+    description: "Enable clients, contractors, and engineers to access information.",
   },
   {
-    icon: Lightbulb,
-    title: "Decision Support",
-    description: "Enable circular decision-making with data insights",
+    step: 4,
+    icon: Recycle,
+    title: "Evaluate Reuse",
+    description: "Assess condition, verification status, and reuse feasibility.",
   },
   {
+    step: 5,
     icon: FileCheck,
-    title: "Project & Procurement",
-    description: "Apply data to project planning and tender workflows",
+    title: "Support Projects",
+    description: "Apply verified data to project planning and procurement.",
+  },
+]
+
+const actionCards = [
+  {
+    title: "Manage Components",
+    description: "Register and explore infrastructure components with detailed technical and condition data.",
+    href: "/registry",
+    icon: Database,
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+  },
+  {
+    title: "Verify & Share Data",
+    description: "Access Digital Product Passports and ensure trusted, verifiable information across stakeholders.",
+    href: "/verification",
+    icon: ShieldCheck,
+    color: "text-success",
+    bgColor: "bg-success/10",
+  },
+  {
+    title: "Prepare Projects",
+    description: "Evaluate reusable components and support project planning and procurement decisions.",
+    href: "/projects",
+    icon: FolderKanban,
+    color: "text-yellow-600",
+    bgColor: "bg-yellow-500/10",
   },
 ]
 
@@ -135,11 +162,15 @@ export default function DashboardPage() {
 
       {/* Platform Purpose */}
       <Card className="mb-8 border-primary/20 bg-primary/5">
-        <CardContent className="pt-6">
-          <p className="text-foreground leading-relaxed">
-            <span className="font-semibold">CircuFax</span> enables infrastructure stakeholders to manage component data, 
-            link verified Digital Product Passports, and support circular decisions across the supply chain. 
-            Procurement is one of the key application contexts.
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">Platform Purpose</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-foreground leading-relaxed mb-2">
+            <span className="font-semibold">CircuFax</span> is a platform for managing and sharing infrastructure component data across the supply chain.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            It links verified Digital Product Passports to support circular decision-making, lifecycle management, and project or procurement workflows. Procurement is one application — not the only purpose.
           </p>
         </CardContent>
       </Card>
@@ -148,15 +179,19 @@ export default function DashboardPage() {
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="text-base">How CircuFax Works</CardTitle>
+          <p className="text-sm text-muted-foreground mt-1">
+            CircuFax supports circular infrastructure decisions by connecting component data, verified Digital Product Passports, and project workflows.
+          </p>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {workflowSteps.map((step, index) => (
               <div key={step.title} className="relative">
                 <div className="flex flex-col items-center text-center p-4 rounded-lg bg-muted/30 border border-border h-full">
-                  <div className="p-3 rounded-full bg-primary/10 mb-3">
-                    <step.icon className="h-5 w-5 text-primary" />
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold mb-3">
+                    {step.step}
                   </div>
+                  <step.icon className="h-5 w-5 text-primary mb-2" />
                   <h3 className="text-sm font-semibold mb-1">{step.title}</h3>
                   <p className="text-xs text-muted-foreground">{step.description}</p>
                 </div>
@@ -164,6 +199,30 @@ export default function DashboardPage() {
                   <ChevronRight className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/50 z-10" />
                 )}
               </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* What do you want to do? */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="text-base">What do you want to do?</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {actionCards.map((card) => (
+              <Link key={card.title} href={card.href}>
+                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer">
+                  <CardContent className="pt-6">
+                    <div className={`p-3 rounded-lg ${card.bgColor} w-fit mb-4`}>
+                      <card.icon className={`h-6 w-6 ${card.color}`} />
+                    </div>
+                    <h3 className="font-semibold mb-2">{card.title}</h3>
+                    <p className="text-sm text-muted-foreground">{card.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </CardContent>
@@ -385,26 +444,33 @@ export default function DashboardPage() {
             <Lightbulb className="h-4 w-4 text-success" />
             Why This Matters
           </CardTitle>
+          <p className="text-sm text-muted-foreground mt-1">
+            Infrastructure projects often face challenges related to data availability, trust, and coordination.
+          </p>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <p className="text-sm text-muted-foreground mb-4">CircuFax helps to:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
-              <p className="text-sm text-muted-foreground">Reduces transaction costs by providing verified, trusted component data</p>
+              <p className="text-sm text-muted-foreground">reduce transaction costs related to data exchange</p>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
-              <p className="text-sm text-muted-foreground">Improves data transparency across the infrastructure supply chain</p>
+              <p className="text-sm text-muted-foreground">improve transparency across stakeholders</p>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
-              <p className="text-sm text-muted-foreground">Enables circular infrastructure decisions through reuse assessment</p>
+              <p className="text-sm text-muted-foreground">enable circular infrastructure decisions</p>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
-              <p className="text-sm text-muted-foreground">Supports collaboration between clients, asset owners, and contractors</p>
+              <p className="text-sm text-muted-foreground">support collaboration between clients and contractors</p>
             </div>
           </div>
+          <p className="text-sm text-muted-foreground italic">
+            By connecting verified data to real project contexts, CircuFax turns information into actionable decisions.
+          </p>
         </CardContent>
       </Card>
 

@@ -186,23 +186,27 @@ export default async function ComponentDetailPage({ params }: PageProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-foreground leading-relaxed">
+          <p className="text-foreground leading-relaxed mb-2">
             This component is part of the infrastructure supply chain and can be evaluated for reuse, 
-            repurposing, or replacement based on its condition, structural properties, and verification status.
+            repurposing, or replacement.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Its technical properties, condition assessment, and verification status enable stakeholders 
+            to make informed lifecycle decisions.
           </p>
         </CardContent>
       </Card>
 
-      {/* Decision Support Context */}
+      {/* Decision Support */}
       <Card className="mb-8 bg-muted/30">
         <CardHeader className="pb-4">
           <CardTitle className="text-base flex items-center gap-2">
             <FileText className="h-4 w-4 text-primary" />
-            Decision Support Context
+            Decision Support
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
             <div>
               <p className="text-sm text-muted-foreground mb-1">Reuse Feasibility</p>
               <Badge variant="outline" className={cn(
@@ -217,49 +221,27 @@ export default async function ComponentDetailPage({ params }: PageProps) {
               </Badge>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Lifecycle Extension Potential</p>
-              <Badge variant="outline" className={cn(
-                "font-medium",
-                component.conditionScore <= 3 && component.verificationStatus === "Verified"
-                  ? "bg-success/10 text-success border-success/20" 
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-              )}>
-                {component.conditionScore <= 3 && component.verificationStatus === "Verified" ? "Confirmed" : "Under Review"}
-              </Badge>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Suitable Use Cases</p>
-              <p className="text-sm font-medium">
-                {component.conditionScore <= 2 
-                  ? "Bridge replacement, permanent structure" 
-                  : component.conditionScore === 3 
-                    ? "Secondary infrastructure, temporary structure"
-                    : "Material recovery, recycling"}
-              </p>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Technical Fit</p>
+              <p className="text-sm text-muted-foreground mb-1">Verification Status</p>
               <Badge variant="outline" className={cn(
                 "font-medium",
                 component.verificationStatus === "Verified" 
                   ? "bg-success/10 text-success border-success/20" 
                   : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
               )}>
-                {component.verificationStatus === "Verified" ? "Yes" : "Pending"}
+                {component.verificationStatus}
               </Badge>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Verification Complete</p>
+              <p className="text-sm text-muted-foreground mb-1">Condition Score (NEN 2767)</p>
               <Badge variant="outline" className={cn(
                 "font-medium",
-                component.verificationStatus === "Verified" 
+                component.conditionScore <= 2
                   ? "bg-success/10 text-success border-success/20" 
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+                  : component.conditionScore <= 4
+                    ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+                    : "bg-destructive/10 text-destructive border-destructive/20"
               )}>
-                {component.verificationStatus === "Verified" ? "Yes" : "Pending"}
+                {component.conditionScore}
               </Badge>
             </div>
             <div>
@@ -270,11 +252,14 @@ export default async function ComponentDetailPage({ params }: PageProps) {
                   ? "bg-success/10 text-success border-success/20" 
                   : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
               )}>
-                {component.verificationStatus === "Verified" ? "Complete" : "Partial"}
+                {component.verificationStatus === "Verified" ? "80%" : "40%"}
               </Badge>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Project Suitability</p>
+          </div>
+          
+          <div className="p-4 rounded-lg bg-background border border-border mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium">Project Suitability</span>
               <Badge variant="outline" className={cn(
                 "font-medium",
                 component.verificationStatus === "Verified" && component.conditionScore <= 3
@@ -284,9 +269,52 @@ export default async function ComponentDetailPage({ params }: PageProps) {
                 {component.verificationStatus === "Verified" && component.conditionScore <= 3 ? "Suitable" : "Conditional"}
               </Badge>
             </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Recommended Use</p>
+              <p className="text-sm">
+                {component.conditionScore <= 2 
+                  ? "This component can be considered for reuse in bridge replacement or similar infrastructure projects within compatible span and load conditions." 
+                  : component.conditionScore === 3 
+                    ? "This component may be suitable for secondary infrastructure or projects with reduced load requirements."
+                    : "This component is recommended for material recovery or recycling rather than direct reuse."}
+              </p>
+            </div>
           </div>
           
           <AddToProcurementButton componentId={component.id} />
+        </CardContent>
+      </Card>
+
+      {/* Project & Procurement Context */}
+      <Card className="mb-8 bg-muted/30">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base flex items-center gap-2">
+            <FileText className="h-4 w-4 text-primary" />
+            Project & Procurement Context
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-foreground leading-relaxed mb-4">
+            This component may be used in infrastructure projects where reuse is feasible.
+            Verified data and condition assessments can support:
+          </p>
+          <ul className="space-y-2 mb-4">
+            <li className="flex items-start gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+              <span className="text-muted-foreground">project planning decisions</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+              <span className="text-muted-foreground">engineering evaluation</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+              <span className="text-muted-foreground">procurement preparation</span>
+            </li>
+          </ul>
+          <p className="text-sm text-muted-foreground">
+            This enables more transparent and circular infrastructure development.
+          </p>
         </CardContent>
       </Card>
 

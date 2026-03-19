@@ -54,13 +54,33 @@ export default function ProcurementCasesPage() {
           <h1 className="text-2xl font-bold text-foreground">Projects & Procurement</h1>
         </div>
         <p className="text-muted-foreground mb-4">
-          This section demonstrates how verified component data can be used to support project planning and procurement decisions.
+          This section demonstrates how infrastructure component data can be used in real project contexts.
         </p>
         <Card className="bg-muted/30 border-border">
           <CardContent className="pt-4 pb-4">
+            <p className="text-sm text-muted-foreground mb-3">
+              Stakeholders can:
+            </p>
+            <ul className="space-y-1 text-sm text-muted-foreground mb-3">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                review available components
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                assess condition and verification
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                evaluate reuse potential
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                support project planning and procurement decisions
+              </li>
+            </ul>
             <p className="text-sm text-muted-foreground">
-              Use this workspace to link verified infrastructure components to specific project contexts, 
-              evaluate reuse feasibility, and prepare decision support documentation for procurement workflows.
+              The goal is to translate data into actionable insights.
             </p>
           </CardContent>
         </Card>
