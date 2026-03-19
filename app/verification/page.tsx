@@ -37,6 +37,30 @@ export default function VerificationPage() {
         <p className="text-muted-foreground mb-4">
           Track verification status and link to Digital Product Passports for all infrastructure components.
         </p>
+        
+        {/* Verification Context */}
+        <Card className="mb-4 border-2 border-primary/30 bg-primary/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Verification Context</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                <span className="text-muted-foreground">CircuFax does not store or verify Digital Product Passports.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                <span className="text-muted-foreground">Verification is provided through external trusted infrastructure, such as <span className="font-medium text-foreground">Circularise</span>.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                <span className="text-muted-foreground">CircuFax uses verified data to support decision-making in infrastructure projects, including reuse evaluation and procurement preparation.</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+        
         <Card className="border-2 border-destructive/30 bg-destructive/5">
           <CardContent className="pt-4 pb-4">
             <div className="flex items-start gap-3">
