@@ -72,30 +72,33 @@ const workflowSteps = [
   },
 ]
 
-const actionCards = [
+const userJourneys = [
   {
-    title: "Manage Components",
-    description: "Register and explore infrastructure components with detailed technical and condition data.",
+    question: "I want to explore components",
+    description: "Browse the registry to find infrastructure components with detailed technical data, condition assessments, and reuse potential.",
     href: "/registry",
     icon: Database,
     color: "text-primary",
     bgColor: "bg-primary/10",
+    borderColor: "border-primary/30 hover:border-primary",
   },
   {
-    title: "Verify & Share Data",
-    description: "Access Digital Product Passports and ensure trusted, verifiable information across stakeholders.",
+    question: "I want to verify data",
+    description: "Access verified Digital Product Passports and ensure trusted, traceable information across stakeholders.",
     href: "/verification",
     icon: ShieldCheck,
     color: "text-success",
     bgColor: "bg-success/10",
+    borderColor: "border-success/30 hover:border-success",
   },
   {
-    title: "Prepare Projects",
-    description: "Evaluate reusable components and support project planning and procurement decisions.",
+    question: "I want to prepare a project",
+    description: "Evaluate reusable components for your project and support decision-making with verified data.",
     href: "/projects",
     icon: FolderKanban,
     color: "text-yellow-600",
     bgColor: "bg-yellow-500/10",
+    borderColor: "border-yellow-500/30 hover:border-yellow-500",
   },
 ]
 
@@ -154,24 +157,51 @@ export default function DashboardPage() {
   return (
     <div className="p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">
-          Infrastructure component data management and circular decision support.
+        <h1 className="text-2xl font-bold text-foreground mb-2">CircuFax</h1>
+        <p className="text-lg text-muted-foreground">
+          Infrastructure Component Data & Decision Support
         </p>
       </div>
 
-      {/* Platform Purpose */}
-      <Card className="mb-8 border-primary/20 bg-primary/5">
+      {/* Circularise Separation - Hard Statement */}
+      <Card className="mb-6 border-destructive/20 bg-destructive/5">
+        <CardContent className="pt-4 pb-4">
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-1">Important Distinction</p>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-medium">CircuFax does not provide Digital Product Passports.</span> Verification is handled by <span className="font-medium">Circularise</span>. CircuFax uses verified data for decision-making.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* User Journey Entry - Start Here */}
+      <Card className="mb-8 border-2 border-primary/30">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">Platform Purpose</CardTitle>
+          <CardTitle className="text-lg flex items-center gap-2">
+            Start Here
+          </CardTitle>
+          <p className="text-sm text-muted-foreground">What do you want to do?</p>
         </CardHeader>
         <CardContent>
-          <p className="text-foreground leading-relaxed mb-2">
-            <span className="font-semibold">CircuFax</span> is a platform for managing and sharing infrastructure component data across the supply chain.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            It links verified Digital Product Passports to support circular decision-making, lifecycle management, and project or procurement workflows. Procurement is one application — not the only purpose.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {userJourneys.map((journey) => (
+              <Link key={journey.question} href={journey.href}>
+                <Card className={cn("h-full transition-all cursor-pointer border-2", journey.borderColor)}>
+                  <CardContent className="pt-6">
+                    <div className={cn("p-3 rounded-lg w-fit mb-4", journey.bgColor)}>
+                      <journey.icon className={cn("h-6 w-6", journey.color)} />
+                    </div>
+                    <h3 className="font-semibold mb-2 text-foreground">{journey.question}</h3>
+                    <p className="text-sm text-muted-foreground">{journey.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </CardContent>
       </Card>
 
@@ -204,26 +234,68 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
 
-      {/* What do you want to do? */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="text-base">What do you want to do?</CardTitle>
+      {/* Featured Project Scenario */}
+      <Card className="mb-8 border-2 border-success/30 bg-success/5">
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <div>
+              <Badge variant="outline" className="mb-2 bg-success/10 text-success border-success/20">
+                Live Project Example
+              </Badge>
+              <CardTitle className="text-lg">Bridge Replacement – N203</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">Client: Province of North Holland</p>
+            </div>
+            <Link href="/projects/case-n203">
+              <Button variant="outline" size="sm" className="gap-2">
+                View Project
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {actionCards.map((card) => (
-              <Link key={card.title} href={card.href}>
-                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer">
-                  <CardContent className="pt-6">
-                    <div className={`p-3 rounded-lg ${card.bgColor} w-fit mb-4`}>
-                      <card.icon className={`h-6 w-6 ${card.color}`} />
-                    </div>
-                    <h3 className="font-semibold mb-2">{card.title}</h3>
-                    <p className="text-sm text-muted-foreground">{card.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Components Selected</p>
+              <p className="text-lg font-bold">4</p>
+            </div>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Verified</p>
+              <p className="text-lg font-bold text-success">3 / 4</p>
+            </div>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Avg. Condition</p>
+              <p className="text-lg font-bold">2.75</p>
+            </div>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Readiness Score</p>
+              <p className="text-lg font-bold text-success">82%</p>
+            </div>
+          </div>
+          
+          {/* Decision Panel */}
+          <div className="p-4 rounded-lg bg-background border-2 border-primary/20">
+            <p className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <Gauge className="h-4 w-4 text-primary" />
+              Decision Outcome
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Reuse Feasibility</p>
+                <Badge className="bg-success/10 text-success border-success/20 font-semibold">HIGH</Badge>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Verification</p>
+                <Badge className="bg-success/10 text-success border-success/20 font-semibold">75% COMPLETE</Badge>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Procurement Suitability</p>
+                <Badge className="bg-success/10 text-success border-success/20 font-semibold">YES</Badge>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground mt-3 pt-3 border-t border-border">
+              <span className="font-medium text-foreground">Recommended Use:</span> Suitable for reuse in bridge spans 20–30m with LM1 load class requirements.
+            </p>
           </div>
         </CardContent>
       </Card>

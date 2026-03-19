@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, ShieldCheck, Box, Layers, Activity, Gauge, FileText } from "lucide-react"
+import { ArrowLeft, ExternalLink, ShieldCheck, Box, Layers, Activity, Gauge, FileText, Lightbulb } from "lucide-react"
 import { components } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { AddToProcurementButton } from "@/components/add-to-procurement-button"
@@ -197,87 +197,87 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Support */}
-      <Card className="mb-8 bg-muted/30">
-        <CardHeader className="pb-4">
+      {/* Decision Panel - Most Important */}
+      <Card className="mb-8 border-2 border-primary/30 bg-primary/5">
+        <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <FileText className="h-4 w-4 text-primary" />
-            Decision Support
+            <Gauge className="h-4 w-4 text-primary" />
+            Decision Panel
           </CardTitle>
+          <p className="text-sm text-muted-foreground">Key indicators for reuse and project decisions</p>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Reuse Feasibility</p>
-              <Badge variant="outline" className={cn(
-                "font-medium",
+          {/* Decision Indicators */}
+          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-primary/20">
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Reuse Feasibility</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
                 component.conditionScore <= 2
-                  ? "bg-success/10 text-success border-success/20" 
+                  ? "bg-success text-success-foreground" 
                   : component.conditionScore === 3
-                    ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-                    : "bg-destructive/10 text-destructive border-destructive/20"
+                    ? "bg-yellow-500 text-white"
+                    : "bg-destructive text-destructive-foreground"
               )}>
-                {component.conditionScore <= 2 ? "High" : component.conditionScore === 3 ? "Medium" : "Low"}
+                {component.conditionScore <= 2 ? "HIGH" : component.conditionScore === 3 ? "MEDIUM" : "LOW"}
               </Badge>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Verification Status</p>
-              <Badge variant="outline" className={cn(
-                "font-medium",
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Verification</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
                 component.verificationStatus === "Verified" 
-                  ? "bg-success/10 text-success border-success/20" 
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+                  ? "bg-success text-success-foreground" 
+                  : "bg-yellow-500 text-white"
               )}>
-                {component.verificationStatus}
+                {component.verificationStatus === "Verified" ? "COMPLETE" : "PENDING"}
               </Badge>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Condition Score (NEN 2767)</p>
-              <Badge variant="outline" className={cn(
-                "font-medium",
-                component.conditionScore <= 2
-                  ? "bg-success/10 text-success border-success/20" 
-                  : component.conditionScore <= 4
-                    ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-                    : "bg-destructive/10 text-destructive border-destructive/20"
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Procurement Suitability</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
+                component.verificationStatus === "Verified" && component.conditionScore <= 3
+                  ? "bg-success text-success-foreground" 
+                  : "bg-yellow-500 text-white"
               )}>
-                {component.conditionScore}
-              </Badge>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Evidence Completeness</p>
-              <Badge variant="outline" className={cn(
-                "font-medium",
-                component.verificationStatus === "Verified" 
-                  ? "bg-success/10 text-success border-success/20" 
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-              )}>
-                {component.verificationStatus === "Verified" ? "80%" : "40%"}
+                {component.verificationStatus === "Verified" && component.conditionScore <= 3 ? "YES" : "CONDITIONAL"}
               </Badge>
             </div>
           </div>
           
-          <div className="p-4 rounded-lg bg-background border border-border mb-6">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium">Project Suitability</span>
-              <Badge variant="outline" className={cn(
-                "font-medium",
-                component.verificationStatus === "Verified" && component.conditionScore <= 3
-                  ? "bg-success/10 text-success border-success/20" 
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-              )}>
-                {component.verificationStatus === "Verified" && component.conditionScore <= 3 ? "Suitable" : "Conditional"}
-              </Badge>
+          {/* Recommended Use - Very Important */}
+          <div className="p-4 rounded-lg bg-background border-2 border-success/30 mb-4">
+            <p className="text-sm font-semibold mb-2 flex items-center gap-2">
+              <Activity className="h-4 w-4 text-success" />
+              Recommended Use
+            </p>
+            <p className="text-sm font-medium text-foreground">
+              {component.conditionScore <= 2 
+                ? `Suitable for reuse in bridge spans ${component.geometry.length} with compatible load requirements.` 
+                : component.conditionScore === 3 
+                  ? "May be suitable for secondary infrastructure or projects with reduced load requirements."
+                  : "Recommended for material recovery or recycling rather than direct structural reuse."}
+            </p>
+          </div>
+          
+          {/* Supporting Data */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Condition Score</p>
+              <p className="text-lg font-bold">{component.conditionScore}</p>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Recommended Use</p>
-              <p className="text-sm">
-                {component.conditionScore <= 2 
-                  ? "This component can be considered for reuse in bridge replacement or similar infrastructure projects within compatible span and load conditions." 
-                  : component.conditionScore === 3 
-                    ? "This component may be suitable for secondary infrastructure or projects with reduced load requirements."
-                    : "This component is recommended for material recovery or recycling rather than direct reuse."}
-              </p>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Evidence</p>
+              <p className="text-lg font-bold">{component.verificationStatus === "Verified" ? "80%" : "40%"}</p>
+            </div>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Span</p>
+              <p className="text-lg font-bold">{component.geometry.length}</p>
+            </div>
+            <div className="p-3 rounded-lg bg-background border border-border">
+              <p className="text-xs text-muted-foreground mb-1">Weight</p>
+              <p className="text-lg font-bold">{component.geometry.weight}</p>
             </div>
           </div>
           
