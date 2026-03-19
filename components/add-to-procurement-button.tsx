@@ -16,15 +16,15 @@ export function AddToProcurementButton({ componentId }: AddToProcurementButtonPr
   const handleClick = () => {
     toast({
       title: "Component Added",
-      description: `${componentId} has been added to the procurement case.`,
+      description: `${componentId} has been added to the project.`,
     })
-    router.push("/procurement-cases/case-n203")
+    router.push("/projects/case-n203")
   }
 
   return (
     <Button onClick={handleClick} className="gap-2 bg-primary hover:bg-primary/90">
       <Plus className="h-4 w-4" />
-      Add to Procurement Case
+      Add to Project
     </Button>
   )
 }

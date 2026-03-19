@@ -18,8 +18,8 @@ import { cn } from "@/lib/utils"
 
 const reportTypes = [
   {
-    title: "Procurement Assessment Reports",
-    description: "Component assessment reports for active procurement cases",
+    title: "Project Assessment Reports",
+    description: "Component assessment reports for active projects and procurement cases",
     icon: FileText,
     count: procurementCases.length,
     color: "text-primary",
@@ -87,7 +87,7 @@ export default function ReportsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Recent Procurement Reports</CardTitle>
+          <CardTitle className="text-base">Recent Project Reports</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -109,7 +109,7 @@ export default function ReportsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Link href={`/procurement-cases/${caseItem.id}/report`}>
+                  <Link href={`/projects/${caseItem.id}/report`}>
                     <Button variant="outline" size="sm" className="gap-2">
                       View Report
                       <ArrowRight className="h-4 w-4" />

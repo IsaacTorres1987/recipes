@@ -38,7 +38,7 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function ProcurementCaseDetailPage({ params }: PageProps) {
+export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params
   const caseData = procurementCases.find((c) => c.id === id)
 
@@ -114,11 +114,11 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
   return (
     <div className="p-6 lg:p-8">
       <Link 
-        href="/procurement-cases" 
+        href="/projects" 
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Procurement Cases
+        Back to Projects
       </Link>
 
       <div className="mb-8">
@@ -131,7 +131,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
               <h1 className="text-2xl font-bold text-foreground">
                 {caseData.projectName}
               </h1>
-              <p className="text-muted-foreground">Procurement Case Workspace</p>
+              <p className="text-muted-foreground">Project & Procurement Workspace</p>
             </div>
           </div>
           <Badge 
@@ -497,7 +497,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
 
       {/* Export Button */}
       <div className="flex justify-end">
-        <Link href={`/procurement-cases/${caseData.id}/report`}>
+        <Link href={`/projects/${caseData.id}/report`}>
           <Button className="gap-2 bg-primary hover:bg-primary/90">
             <Download className="h-4 w-4" />
             Export Procurement Package

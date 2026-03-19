@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { Database, ShieldCheck, Activity, Recycle, FolderKanban, ArrowRight, Gauge } from "lucide-react"
+import { Database, ShieldCheck, Activity, Recycle, FolderKanban, ArrowRight, Gauge, Building2, Share2, Lightbulb, FileCheck, ChevronRight } from "lucide-react"
 import { dashboardStats, procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
@@ -37,6 +37,39 @@ const componentTypeData = [
   { name: "Bearings", value: 28, fill: "#2E9E6F" },
   { name: "Deck Slabs", value: 31, fill: "#64748b" },
   { name: "Other Structural", value: 23, fill: "#94a3b8" },
+]
+
+const workflowSteps = [
+  {
+    icon: Building2,
+    title: "Infrastructure Assets",
+    description: "Capture data from existing infrastructure components",
+  },
+  {
+    icon: Database,
+    title: "Component Registry",
+    description: "Organize and manage component technical data",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Verification (DPP)",
+    description: "Link to verified Digital Product Passports via Circularise",
+  },
+  {
+    icon: Share2,
+    title: "Supply Chain Sharing",
+    description: "Share verified data across stakeholders",
+  },
+  {
+    icon: Lightbulb,
+    title: "Decision Support",
+    description: "Enable circular decision-making with data insights",
+  },
+  {
+    icon: FileCheck,
+    title: "Project & Procurement",
+    description: "Apply data to project planning and tender workflows",
+  },
 ]
 
 const statCards = [
@@ -94,11 +127,47 @@ export default function DashboardPage() {
   return (
     <div className="p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground mb-2">Infrastructure Overview</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Dashboard</h1>
         <p className="text-muted-foreground">
-          System-wide statistics and component distribution across your infrastructure portfolio.
+          Infrastructure component data management and circular decision support.
         </p>
       </div>
+
+      {/* Platform Purpose */}
+      <Card className="mb-8 border-primary/20 bg-primary/5">
+        <CardContent className="pt-6">
+          <p className="text-foreground leading-relaxed">
+            <span className="font-semibold">CircuFax</span> enables infrastructure stakeholders to manage component data, 
+            link verified Digital Product Passports, and support circular decisions across the supply chain. 
+            Procurement is one of the key application contexts.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* How CircuFax Works */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="text-base">How CircuFax Works</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {workflowSteps.map((step, index) => (
+              <div key={step.title} className="relative">
+                <div className="flex flex-col items-center text-center p-4 rounded-lg bg-muted/30 border border-border h-full">
+                  <div className="p-3 rounded-full bg-primary/10 mb-3">
+                    <step.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="text-sm font-semibold mb-1">{step.title}</h3>
+                  <p className="text-xs text-muted-foreground">{step.description}</p>
+                </div>
+                {index < workflowSteps.length - 1 && (
+                  <ChevronRight className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/50 z-10" />
+                )}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {statCards.map((stat) => (
@@ -177,8 +246,8 @@ export default function DashboardPage() {
       <Card className="mb-8">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base">Procurement Readiness Overview</CardTitle>
-            <Link href="/procurement-cases">
+            <CardTitle className="text-base">Project & Procurement Overview</CardTitle>
+            <Link href="/projects">
               <Button variant="outline" size="sm" className="gap-2">
                 View All Cases
                 <ArrowRight className="h-4 w-4" />
@@ -193,7 +262,7 @@ export default function DashboardPage() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <Link 
-                      href={`/procurement-cases/${caseItem.id}`}
+                      href={`/projects/${caseItem.id}`}
                       className="font-semibold hover:text-primary transition-colors"
                     >
                       {caseItem.projectName}
@@ -308,6 +377,36 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Why This Matters */}
+      <Card className="mt-6 border-success/20 bg-success/5">
+        <CardHeader>
+          <CardTitle className="text-base flex items-center gap-2">
+            <Lightbulb className="h-4 w-4 text-success" />
+            Why This Matters
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
+              <p className="text-sm text-muted-foreground">Reduces transaction costs by providing verified, trusted component data</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
+              <p className="text-sm text-muted-foreground">Improves data transparency across the infrastructure supply chain</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
+              <p className="text-sm text-muted-foreground">Enables circular infrastructure decisions through reuse assessment</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-success mt-2 shrink-0" />
+              <p className="text-sm text-muted-foreground">Supports collaboration between clients, asset owners, and contractors</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <Card className="mt-6">
         <CardHeader>

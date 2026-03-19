@@ -177,20 +177,67 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
+      {/* Role in Supply Chain */}
       <Card className="mb-8 bg-muted/30">
         <CardHeader className="pb-4">
           <CardTitle className="text-base flex items-center gap-2">
             <FileText className="h-4 w-4 text-primary" />
-            Procurement Context
+            Role in Supply Chain
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-foreground leading-relaxed mb-2">
-            This verified infrastructure component may be considered for reuse in bridge replacement tenders.
+          <p className="text-foreground leading-relaxed">
+            This component is part of the infrastructure supply chain and can be evaluated for reuse, 
+            repurposing, or replacement based on its condition, structural properties, and verification status.
           </p>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            Engineering validation, condition assessment, and inspection evidence are available through the Digital Product Passport.
-          </p>
+        </CardContent>
+      </Card>
+
+      {/* Decision Support Context */}
+      <Card className="mb-8 bg-muted/30">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base flex items-center gap-2">
+            <FileText className="h-4 w-4 text-primary" />
+            Decision Support Context
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Reuse Feasibility</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.conditionScore <= 2
+                  ? "bg-success/10 text-success border-success/20" 
+                  : component.conditionScore === 3
+                    ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+                    : "bg-destructive/10 text-destructive border-destructive/20"
+              )}>
+                {component.conditionScore <= 2 ? "High" : component.conditionScore === 3 ? "Medium" : "Low"}
+              </Badge>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Lifecycle Extension Potential</p>
+              <Badge variant="outline" className={cn(
+                "font-medium",
+                component.conditionScore <= 3 && component.verificationStatus === "Verified"
+                  ? "bg-success/10 text-success border-success/20" 
+                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+              )}>
+                {component.conditionScore <= 3 && component.verificationStatus === "Verified" ? "Confirmed" : "Under Review"}
+              </Badge>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Suitable Use Cases</p>
+              <p className="text-sm font-medium">
+                {component.conditionScore <= 2 
+                  ? "Bridge replacement, permanent structure" 
+                  : component.conditionScore === 3 
+                    ? "Secondary infrastructure, temporary structure"
+                    : "Material recovery, recycling"}
+              </p>
+            </div>
+          </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 rounded-lg bg-background border border-border">
             <div>
@@ -216,18 +263,18 @@ export default async function ComponentDetailPage({ params }: PageProps) {
               </Badge>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Reuse Feasible</p>
+              <p className="text-sm text-muted-foreground mb-1">Evidence Completeness</p>
               <Badge variant="outline" className={cn(
                 "font-medium",
-                component.conditionScore <= 3
+                component.verificationStatus === "Verified" 
                   ? "bg-success/10 text-success border-success/20" 
                   : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
               )}>
-                {component.conditionScore <= 2 ? "High" : component.conditionScore === 3 ? "Medium" : "Low"}
+                {component.verificationStatus === "Verified" ? "Complete" : "Partial"}
               </Badge>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Tender Suitability</p>
+              <p className="text-sm text-muted-foreground mb-1">Project Suitability</p>
               <Badge variant="outline" className={cn(
                 "font-medium",
                 component.verificationStatus === "Verified" && component.conditionScore <= 3
