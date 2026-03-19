@@ -163,6 +163,62 @@ export default function DashboardPage() {
         </p>
       </div>
 
+      {/* Example Project Section */}
+      <Card className="mb-6 border-2 border-primary/30 bg-primary/5">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2 mb-1">
+            <Building2 className="h-5 w-5 text-primary" />
+            <CardTitle className="text-lg">Example Project</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground">Project:</span>
+                <span className="text-sm font-semibold text-foreground text-right">Bridge Replacement – N203</span>
+              </div>
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground">Client:</span>
+                <span className="text-sm font-semibold text-foreground text-right">Province of North Holland</span>
+              </div>
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground">Asset Type:</span>
+                <span className="text-sm font-semibold text-foreground text-right">Road Bridge</span>
+              </div>
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground">Stage:</span>
+                <Badge variant="outline" className="bg-yellow-500/10 text-yellow-600 border-yellow-500/20">
+                  Tender Preparation
+                </Badge>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-1">Objective</p>
+                <p className="text-sm text-muted-foreground">
+                  Evaluate the reuse of existing infrastructure components to support circular design and reduce lifecycle costs.
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-1">Description</p>
+                <p className="text-sm text-muted-foreground">
+                  This project demonstrates how verified component data can be used to assess reuse potential and support project and procurement decisions.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t border-primary/20">
+            <Link href="/projects/case-n203">
+              <Button variant="outline" size="sm" className="gap-2">
+                View Full Project
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Circularise Separation - Hard Statement */}
       <Card className="mb-6 border-destructive/20 bg-destructive/5">
         <CardContent className="pt-4 pb-4">
