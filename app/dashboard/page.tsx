@@ -219,6 +219,37 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
 
+      {/* How CircuFax is Used */}
+      <Card className="mb-6">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">How CircuFax is Used</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ol className="space-y-2 text-sm">
+            <li className="flex items-start gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">1</span>
+              <span className="text-muted-foreground pt-0.5">Register infrastructure components</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">2</span>
+              <span className="text-muted-foreground pt-0.5">Link verified Digital Product Passports</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">3</span>
+              <span className="text-muted-foreground pt-0.5">Share data across stakeholders</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">4</span>
+              <span className="text-muted-foreground pt-0.5">Evaluate reuse and lifecycle options</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">5</span>
+              <span className="text-muted-foreground pt-0.5">Apply insights in projects and procurement</span>
+            </li>
+          </ol>
+        </CardContent>
+      </Card>
+
       {/* Circularise Separation - Hard Statement */}
       <Card className="mb-6 border-destructive/20 bg-destructive/5">
         <CardContent className="pt-4 pb-4">
