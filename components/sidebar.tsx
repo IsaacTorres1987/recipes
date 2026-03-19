@@ -7,11 +7,9 @@ import { Home, Database, Building2, ShieldCheck, Info, LayoutDashboard, FileText
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/assets", label: "Assets", icon: Building2 },
-  { href: "/registry", label: "Component Registry", icon: Database },
-  { href: "/register", label: "Register Component", icon: PlusCircle },
-  { href: "/procurement-cases", label: "Procurement Cases", icon: FolderKanban },
-  { href: "/verification", label: "Verification Layer", icon: ShieldCheck },
+  { href: "/registry", label: "Component Registry", icon: Database, description: "Data Layer" },
+  { href: "/verification", label: "Verification Layer", icon: ShieldCheck, description: "DPP" },
+  { href: "/projects", label: "Projects & Procurement", icon: FolderKanban, description: "Decision Layer" },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/about", label: "About", icon: Info },
 ]
@@ -55,7 +53,7 @@ export function Sidebar() {
       </nav>
       <div className="p-4 border-t border-sidebar-border">
         <p className="text-xs text-sidebar-foreground/50">
-          Infrastructure Component Intelligence
+          Supply Chain Data &amp; Decision Support
         </p>
       </div>
     </aside>

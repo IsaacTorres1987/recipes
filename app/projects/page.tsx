@@ -51,11 +51,39 @@ export default function ProcurementCasesPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <FolderKanban className="h-6 w-6 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground">Procurement Cases</h1>
+          <h1 className="text-2xl font-bold text-foreground">Projects & Procurement</h1>
         </div>
-        <p className="text-muted-foreground">
-          Manage active procurement cases and prepare tender documentation using verified component data.
+        <p className="text-muted-foreground mb-4">
+          This section demonstrates how infrastructure component data can be used in real project contexts.
         </p>
+        <Card className="bg-muted/30 border-border">
+          <CardContent className="pt-4 pb-4">
+            <p className="text-sm text-muted-foreground mb-3">
+              Stakeholders can:
+            </p>
+            <ul className="space-y-1 text-sm text-muted-foreground mb-3">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                review available components
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                assess condition and verification
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                evaluate reuse potential
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                support project planning and procurement decisions
+              </li>
+            </ul>
+            <p className="text-sm text-muted-foreground">
+              The goal is to translate data into actionable insights.
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -113,7 +141,7 @@ export default function ProcurementCasesPage() {
                   value={caseItem.readinessScore} 
                   className="h-2 mb-4"
                 />
-                <Link href={`/procurement-cases/${caseItem.id}`}>
+                <Link href={`/projects/${caseItem.id}`}>
                   <Button className="w-full gap-2">
                     Open Case
                     <ArrowRight className="h-4 w-4" />

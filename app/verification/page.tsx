@@ -31,12 +31,27 @@ export default function VerificationPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <ShieldCheck className="h-6 w-6 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground">Verification Registry</h1>
+          <h1 className="text-2xl font-bold text-foreground">Verification Layer</h1>
           <InfoTooltip content={tooltipDefinitions.verificationLayer} />
         </div>
-        <p className="text-muted-foreground">
-          Track and verify Digital Product Passports with blockchain-anchored hashes for all infrastructure components.
+        <p className="text-muted-foreground mb-4">
+          Track verification status and link to Digital Product Passports for all infrastructure components.
         </p>
+        <Card className="border-2 border-destructive/30 bg-destructive/5">
+          <CardContent className="pt-4 pb-4">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-2">How Verification Works</p>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li><span className="font-medium text-foreground">CircuFax does not provide Digital Product Passports.</span></li>
+                  <li>Verification is handled by <span className="font-medium">Circularise</span> (traceability, compliance, secure sharing).</li>
+                  <li>CircuFax <span className="font-medium">uses verified data</span> to support decision-making.</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">

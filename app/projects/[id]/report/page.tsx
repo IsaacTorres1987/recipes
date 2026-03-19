@@ -34,7 +34,7 @@ import { procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { notFound } from "next/navigation"
 
-export default function ProcurementReportPage() {
+export default function ProjectReportPage() {
   const params = useParams()
   const { toast } = useToast()
   
@@ -86,7 +86,7 @@ export default function ProcurementReportPage() {
   return (
     <div className="p-6 lg:p-8 max-w-4xl">
       <Link 
-        href={`/procurement-cases/${caseData.id}`}
+        href={`/projects/${caseData.id}`}
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -314,7 +314,7 @@ export default function ProcurementReportPage() {
 
       {/* Action Buttons */}
       <div className="flex justify-between">
-        <Link href={`/procurement-cases/${caseData.id}`}>
+        <Link href={`/projects/${caseData.id}`}>
           <Button variant="outline" className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Return to Procurement Case

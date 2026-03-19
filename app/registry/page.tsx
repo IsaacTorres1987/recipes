@@ -147,8 +147,9 @@ export default function RegistryPage() {
                 <TableHead>Component ID</TableHead>
                 <TableHead>Component Type</TableHead>
                 <TableHead>Span / Length</TableHead>
-                <TableHead>Condition Score (NEN 2767)</TableHead>
-                <TableHead>Verification Status</TableHead>
+                <TableHead>Condition</TableHead>
+                <TableHead>Verification</TableHead>
+                <TableHead>Reuse Potential</TableHead>
                 <TableHead>Owner</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
@@ -175,6 +176,25 @@ export default function RegistryPage() {
                       {component.verificationStatus}
                     </Badge>
                   </TableCell>
+                  <TableCell>
+                    <Badge 
+                      variant="outline" 
+                      className={cn(
+                        "font-medium",
+                        component.conditionScore <= 2 && component.verificationStatus === "Verified"
+                          ? "bg-success/10 text-success border-success/20"
+                          : component.conditionScore <= 3
+                            ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+                            : "bg-muted text-muted-foreground border-border"
+                      )}
+                    >
+                      {component.conditionScore <= 2 && component.verificationStatus === "Verified" 
+                        ? "High" 
+                        : component.conditionScore <= 3 
+                          ? "Medium" 
+                          : "Low"}
+                    </Badge>
+                  </TableCell>
                   <TableCell className="text-muted-foreground">{component.owner}</TableCell>
                   <TableCell className="text-right">
                     <Link href={`/registry/${component.id}`}>
@@ -187,7 +207,7 @@ export default function RegistryPage() {
               ))}
               {filteredComponents.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                  <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                     No components found matching your filters.
                   </TableCell>
                 </TableRow>

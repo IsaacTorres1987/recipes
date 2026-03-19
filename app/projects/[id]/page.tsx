@@ -38,7 +38,7 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function ProcurementCaseDetailPage({ params }: PageProps) {
+export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params
   const caseData = procurementCases.find((c) => c.id === id)
 
@@ -114,11 +114,11 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
   return (
     <div className="p-6 lg:p-8">
       <Link 
-        href="/procurement-cases" 
+        href="/projects" 
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Procurement Cases
+        Back to Projects
       </Link>
 
       <div className="mb-8">
@@ -131,7 +131,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
               <h1 className="text-2xl font-bold text-foreground">
                 {caseData.projectName}
               </h1>
-              <p className="text-muted-foreground">Procurement Case Workspace</p>
+              <p className="text-muted-foreground">Project & Procurement Workspace</p>
             </div>
           </div>
           <Badge 
@@ -144,15 +144,18 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Project Metadata */}
+      {/* Project Scenario */}
       <Card className="mb-6 border-primary/20 bg-primary/5">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Building2 className="h-4 w-4 text-primary" />
-            Project Metadata
+            Project Scenario
           </CardTitle>
         </CardHeader>
         <CardContent>
+          <p className="text-sm text-muted-foreground mb-4">
+            This project explores the use of verified infrastructure components to support circular design and procurement decisions.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-muted-foreground mb-1">Project Name</p>
@@ -175,7 +178,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
               <p className="font-semibold">{caseData.procurementProcedure}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Procurement Stage</p>
+              <p className="text-sm text-muted-foreground mb-1">Stage</p>
               <Badge variant="outline" className={cn("mt-1", getStageColor(caseData.procurementStage))}>
                 {caseData.procurementStage}
               </Badge>
@@ -184,6 +187,68 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
               <p className="text-sm text-muted-foreground mb-1">Design Life Requirement</p>
               <p className="font-semibold">{caseData.designLife}</p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Decision Summary Panel - Most Important */}
+      <Card className="mb-6 border-2 border-primary/30 bg-primary/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4 text-primary" />
+            Decision Summary
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-primary/20">
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Reuse Feasibility</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
+                caseData.circularityMatch === "High"
+                  ? "bg-success text-success-foreground" 
+                  : caseData.circularityMatch === "Medium"
+                    ? "bg-yellow-500 text-white"
+                    : "bg-destructive text-destructive-foreground"
+              )}>
+                {caseData.circularityMatch.toUpperCase()}
+              </Badge>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Verification</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
+                caseData.verificationCoverage >= 75 
+                  ? "bg-success text-success-foreground" 
+                  : "bg-yellow-500 text-white"
+              )}>
+                {caseData.verificationCoverage}% COMPLETE
+              </Badge>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">Procurement Suitability</p>
+              <Badge className={cn(
+                "text-sm px-3 py-1 font-bold",
+                caseData.readinessScore >= 70 
+                  ? "bg-success text-success-foreground" 
+                  : caseData.readinessScore >= 50
+                    ? "bg-yellow-500 text-white"
+                    : "bg-destructive text-destructive-foreground"
+              )}>
+                {caseData.readinessScore >= 70 ? "YES" : caseData.readinessScore >= 50 ? "CONDITIONAL" : "NO"}
+              </Badge>
+            </div>
+          </div>
+          
+          <div className="p-4 rounded-lg bg-background border-2 border-success/30">
+            <p className="text-sm font-semibold mb-2">Recommended Action</p>
+            <p className="text-sm text-foreground">
+              {caseData.readinessScore >= 70 
+                ? `Selected components are suitable for reuse in ${caseData.assetType.toLowerCase()} projects with ${caseData.tenderRequirements.technical.minSpan} span requirements.`
+                : caseData.readinessScore >= 50
+                  ? "Additional verification is recommended before proceeding to procurement."
+                  : "Further assessment required. Consider alternative components or additional inspections."}
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -425,16 +490,19 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
                 <span className="font-medium">{completedEvidence}/{evidenceItems.length} items</span>
               </div>
               <Progress value={evidencePercentage} className="h-2" />
+              <p className="text-xs text-muted-foreground mt-3">
+                Complete and verified data reduces uncertainty and supports decision-making.
+              </p>
             </div>
           </CardContent>
         </Card>
 
-        {/* Procurement Readiness Panel */}
+        {/* Project Decision Overview */}
         <Card className="border-primary/20 bg-primary/5">
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              Procurement Readiness
+              Project Decision Overview
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -459,10 +527,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
                 <span className="font-semibold">{caseData.structuralEvidenceComplete}%</span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground flex items-center gap-1">
-                  Circularity Match
-                  <InfoTooltip content={tooltipDefinitions.circularityMatch} />
-                </span>
+                <span className="text-muted-foreground">Reuse Potential</span>
                 <Badge variant="outline" className={cn("font-medium", getPotentialColor(caseData.circularityMatch))}>
                   {caseData.circularityMatch}
                 </Badge>
@@ -490,6 +555,9 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
                 value={caseData.readinessScore} 
                 className="h-3 mt-2"
               />
+              <p className="text-xs text-muted-foreground mt-3">
+                This score indicates how well the selected components meet technical, verification, and circularity requirements for project and procurement use.
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -497,7 +565,7 @@ export default async function ProcurementCaseDetailPage({ params }: PageProps) {
 
       {/* Export Button */}
       <div className="flex justify-end">
-        <Link href={`/procurement-cases/${caseData.id}/report`}>
+        <Link href={`/projects/${caseData.id}/report`}>
           <Button className="gap-2 bg-primary hover:bg-primary/90">
             <Download className="h-4 w-4" />
             Export Procurement Package

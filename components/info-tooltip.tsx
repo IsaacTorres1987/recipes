@@ -13,12 +13,13 @@ interface InfoTooltipProps {
 }
 
 export const tooltipDefinitions = {
-  dpp: "A Digital Product Passport (DPP) is a structured digital record containing all relevant technical, material, and lifecycle information about an infrastructure component, enabling traceability and informed reuse decisions.",
-  verificationLayer: "The Verification Layer provides third-party validation of component data, ensuring that technical properties, condition assessments, and safety parameters have been independently verified.",
-  procurementReadiness: "Procurement Readiness indicates how well-prepared a component or set of components is for inclusion in a public tender, based on verification status, documentation completeness, and technical suitability.",
-  conditionScore: "The NEN 2767 Condition Score rates the physical state of an infrastructure component on a scale of 1 (excellent) to 6 (very poor), based on standardized inspection criteria.",
-  reuseCandidate: "A Reuse Candidate is an infrastructure component that has been assessed as suitable for a second life in a new project, based on its condition, structural integrity, and remaining design life.",
-  circularityMatch: "Circularity Match indicates how well a component aligns with circular economy principles, including potential for reuse, demountability, and material recovery."
+  dpp: "A structured digital record containing verified information about a component, including materials, condition, and lifecycle data.",
+  verificationLayer: "Confirmation that component data is accurate and traceable, typically provided through trusted external systems like Circularise.",
+  procurementReadiness: "How well-prepared a component or set of components is for inclusion in a project or tender, based on verification status and documentation completeness.",
+  conditionScore: "The NEN 2767 Condition Score rates the physical state of an infrastructure component on a scale of 1 (excellent) to 6 (very poor).",
+  reuseCandidate: "A component assessed as suitable for a second life in a new project, based on condition, structural integrity, and remaining design life.",
+  reuseFeasibility: "An assessment of whether a component can be reused based on condition, structural capacity, and project requirements.",
+  circularityMatch: "How well a component aligns with circular economy principles, including potential for reuse, demountability, and material recovery.",
 }
 
 export function InfoTooltip({ content, className }: InfoTooltipProps) {
