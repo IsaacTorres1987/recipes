@@ -7,6 +7,7 @@ import { Home, Database, Building2, ShieldCheck, Info, LayoutDashboard, FileText
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/assets", label: "Asset Map", icon: Map },
   { href: "/registry", label: "Component Registry", icon: Database, description: "Data Layer" },
   { href: "/verification", label: "Verification Layer", icon: ShieldCheck, description: "DPP" },
   { href: "/projects", label: "Projects & Procurement", icon: FolderKanban, description: "Decision Layer" },

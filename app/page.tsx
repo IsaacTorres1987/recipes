@@ -20,7 +20,7 @@ export default function HomePage() {
             CircuFax enables asset owners and engineers to manage component data, verify infrastructure assets, and support lifecycle and procurement decisions using Digital Product Passports.
           </p>
           
-          <Link href="/registry">
+          <Link href="/dashboard">
             <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
               Enter Platform
               <ArrowRight className="h-4 w-4" />

@@ -163,6 +163,33 @@ export default function DashboardPage() {
         </p>
       </div>
 
+      {/* User Journey Entry - Start Here */}
+      <Card className="mb-6 border-2 border-primary/30">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-lg flex items-center gap-2">
+            Start Here
+          </CardTitle>
+          <p className="text-sm text-muted-foreground">What do you want to do?</p>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {userJourneys.map((journey) => (
+              <Link key={journey.question} href={journey.href}>
+                <Card className={cn("h-full transition-all cursor-pointer border-2", journey.borderColor)}>
+                  <CardContent className="pt-6">
+                    <div className={cn("p-3 rounded-lg w-fit mb-4", journey.bgColor)}>
+                      <journey.icon className={cn("h-6 w-6", journey.color)} />
+                    </div>
+                    <h3 className="font-semibold mb-2 text-foreground">{journey.question}</h3>
+                    <p className="text-sm text-muted-foreground">{journey.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Example Project Section */}
       <Card className="mb-6 border-2 border-primary/30 bg-primary/5">
         <CardHeader className="pb-3">
@@ -261,33 +288,6 @@ export default function DashboardPage() {
                 <span className="font-medium">CircuFax does not provide Digital Product Passports.</span> Verification is handled by <span className="font-medium">Circularise</span>. CircuFax uses verified data for decision-making.
               </p>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* User Journey Entry - Start Here */}
-      <Card className="mb-8 border-2 border-primary/30">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-lg flex items-center gap-2">
-            Start Here
-          </CardTitle>
-          <p className="text-sm text-muted-foreground">What do you want to do?</p>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {userJourneys.map((journey) => (
-              <Link key={journey.question} href={journey.href}>
-                <Card className={cn("h-full transition-all cursor-pointer border-2", journey.borderColor)}>
-                  <CardContent className="pt-6">
-                    <div className={cn("p-3 rounded-lg w-fit mb-4", journey.bgColor)}>
-                      <journey.icon className={cn("h-6 w-6", journey.color)} />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-foreground">{journey.question}</h3>
-                    <p className="text-sm text-muted-foreground">{journey.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
           </div>
         </CardContent>
       </Card>
