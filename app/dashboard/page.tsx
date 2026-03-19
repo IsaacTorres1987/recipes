@@ -240,10 +240,13 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <Badge variant="outline" className="mb-2 bg-success/10 text-success border-success/20">
-                Live Project Example
+                Example Project
               </Badge>
               <CardTitle className="text-lg">Bridge Replacement – N203</CardTitle>
               <p className="text-sm text-muted-foreground mt-1">Client: Province of North Holland</p>
+              <p className="text-sm text-muted-foreground mt-2">
+                <span className="font-medium text-foreground">Objective:</span> Evaluate reuse of existing bridge components for circular reconstruction.
+              </p>
             </div>
             <Link href="/projects/case-n203">
               <Button variant="outline" size="sm" className="gap-2">
