@@ -222,15 +222,15 @@ export default function DashboardPage() {
             </div>
             <div className="space-y-3">
               <div>
-                <p className="text-sm font-semibold text-foreground mb-1">Objective</p>
+                <p className="text-sm font-semibold text-foreground mb-1">Goal</p>
                 <p className="text-sm text-muted-foreground">
-                  Evaluate the reuse of existing infrastructure components to support circular design and reduce lifecycle costs.
+                  Reuse existing bridge components instead of producing new ones.
                 </p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-foreground mb-1">Description</p>
                 <p className="text-sm text-muted-foreground">
-                  This project demonstrates how verified component data can be used to assess reuse potential and support project and procurement decisions.
+                  This example demonstrates how verified infrastructure component data can be used to evaluate reuse potential and support project and procurement decisions.
                 </p>
               </div>
             </div>

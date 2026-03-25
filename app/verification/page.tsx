@@ -47,15 +47,15 @@ export default function VerificationPage() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                <span className="text-muted-foreground">CircuFax does not store or verify Digital Product Passports.</span>
+                <span className="text-muted-foreground">Verification is provided by <span className="font-medium text-foreground">Circularise</span>.</span>
               </li>
               <li className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                <span className="text-muted-foreground">Verification is provided through external trusted infrastructure, such as <span className="font-medium text-foreground">Circularise</span>.</span>
+                <span className="text-muted-foreground">CircuFax does not generate or store Digital Product Passports.</span>
               </li>
               <li className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                <span className="text-muted-foreground">CircuFax uses verified data to support decision-making in infrastructure projects, including reuse evaluation and procurement preparation.</span>
+                <span className="text-muted-foreground">CircuFax uses verified data to support decision-making in infrastructure projects.</span>
               </li>
             </ul>
           </CardContent>
