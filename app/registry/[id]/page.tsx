@@ -177,43 +177,6 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Summary */}
-      <Card className="mb-8 border-2 border-success/30 bg-success/5">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base flex items-center gap-2">
-            <Gauge className="h-4 w-4 text-success" />
-            Decision Summary
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="p-4 rounded-lg bg-background border-2 border-success/30">
-              <p className="text-sm text-muted-foreground mb-2">Reuse Feasibility</p>
-              <Badge className="text-lg px-4 py-1 font-bold bg-success text-success-foreground">
-                HIGH
-              </Badge>
-            </div>
-            <div className="p-4 rounded-lg bg-background border-2 border-success/30">
-              <p className="text-sm text-muted-foreground mb-2">Verification Status</p>
-              <Badge className="text-lg px-4 py-1 font-bold bg-success text-success-foreground">
-                COMPLETE
-              </Badge>
-            </div>
-            <div className="p-4 rounded-lg bg-background border-2 border-border">
-              <p className="text-sm text-muted-foreground mb-2">Condition Score (NEN 2767)</p>
-              <p className="text-2xl font-bold">3</p>
-            </div>
-          </div>
-          
-          <div className="p-4 rounded-lg bg-background border-2 border-success/30">
-            <p className="text-sm font-semibold mb-2">Recommended Use</p>
-            <p className="text-sm text-foreground">
-              Suitable for bridge replacement projects with span requirements between 20–30 meters.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Role in Supply Chain */}
       <Card className="mb-8 bg-muted/30">
         <CardHeader className="pb-4">
@@ -234,18 +197,18 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Panel - Most Important */}
-      <Card className="mb-8 border-2 border-primary/30 bg-primary/5">
+      {/* Decision Summary - Final conclusion after viewing all data */}
+      <Card className="mb-8 border-2 border-success/30 bg-success/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Gauge className="h-4 w-4 text-primary" />
-            Decision Panel
+            <Gauge className="h-4 w-4 text-success" />
+            Decision Summary
           </CardTitle>
-          <p className="text-sm text-muted-foreground">Key indicators for reuse and project decisions</p>
+          <p className="text-sm text-muted-foreground">Based on the component data above</p>
         </CardHeader>
         <CardContent>
           {/* Decision Indicators */}
-          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-primary/20">
+          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-success/20">
             <div className="text-center">
               <p className="text-xs text-muted-foreground mb-2">Reuse Feasibility</p>
               <Badge className={cn(
