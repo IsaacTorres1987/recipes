@@ -177,74 +177,6 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Summary */}
-      <Card className="mb-8 border-2 border-success/30 bg-success/5">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base flex items-center gap-2">
-            <Gauge className="h-4 w-4 text-success" />
-            Decision Summary
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Reuse Feasibility</p>
-              <Badge className={cn(
-                "font-semibold",
-                component.conditionScore <= 2
-                  ? "bg-success/10 text-success border-success/20"
-                  : component.conditionScore === 3
-                    ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-                    : "bg-destructive/10 text-destructive border-destructive/20"
-              )}>
-                {component.conditionScore <= 2 ? "High" : component.conditionScore === 3 ? "Medium" : "Low"}
-              </Badge>
-            </div>
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Verification Status</p>
-              <Badge className={cn(
-                "font-semibold",
-                component.verificationStatus === "Verified"
-                  ? "bg-success/10 text-success border-success/20"
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-              )}>
-                {component.verificationStatus}
-              </Badge>
-            </div>
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Condition Score (NEN 2767)</p>
-              <p className="text-lg font-bold">{component.conditionScore}</p>
-            </div>
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Evidence Completeness</p>
-              <p className="text-lg font-bold">{component.verificationStatus === "Verified" ? "80%" : "40%"}</p>
-            </div>
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Procurement / Project Suitability</p>
-              <Badge className={cn(
-                "font-semibold",
-                component.verificationStatus === "Verified" && component.conditionScore <= 3
-                  ? "bg-success/10 text-success border-success/20"
-                  : "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
-              )}>
-                {component.verificationStatus === "Verified" && component.conditionScore <= 3 ? "Suitable" : "Conditional"}
-              </Badge>
-            </div>
-          </div>
-          
-          <div className="p-4 rounded-lg bg-background border-2 border-success/20">
-            <p className="text-sm font-semibold mb-2">Recommended Use</p>
-            <p className="text-sm text-muted-foreground">
-              {component.conditionScore <= 3 && component.verificationStatus === "Verified"
-                ? `Suitable for reuse in bridge replacement projects with span requirements between 20–30 meters.`
-                : component.conditionScore <= 3
-                  ? "May be suitable for reuse pending verification completion."
-                  : "Recommended for material recovery or recycling rather than direct structural reuse."}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Role in Supply Chain */}
       <Card className="mb-8 bg-muted/30">
         <CardHeader className="pb-4">
@@ -265,18 +197,18 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Panel - Most Important */}
-      <Card className="mb-8 border-2 border-primary/30 bg-primary/5">
+      {/* Decision Summary - Final conclusion after viewing all data */}
+      <Card className="mb-8 border-2 border-success/30 bg-success/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Gauge className="h-4 w-4 text-primary" />
-            Decision Panel
+            <Gauge className="h-4 w-4 text-success" />
+            Decision Summary
           </CardTitle>
-          <p className="text-sm text-muted-foreground">Key indicators for reuse and project decisions</p>
+          <p className="text-sm text-muted-foreground">Based on the component data above</p>
         </CardHeader>
         <CardContent>
           {/* Decision Indicators */}
-          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-primary/20">
+          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-success/20">
             <div className="text-center">
               <p className="text-xs text-muted-foreground mb-2">Reuse Feasibility</p>
               <Badge className={cn(

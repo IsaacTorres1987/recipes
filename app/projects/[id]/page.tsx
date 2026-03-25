@@ -191,68 +191,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Decision Summary Panel - Most Important */}
-      <Card className="mb-6 border-2 border-primary/30 bg-primary/5">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-primary" />
-            Decision Summary
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-3 gap-4 mb-4 p-4 rounded-lg bg-background border-2 border-primary/20">
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground mb-2">Reuse Feasibility</p>
-              <Badge className={cn(
-                "text-sm px-3 py-1 font-bold",
-                caseData.circularityMatch === "High"
-                  ? "bg-success text-success-foreground" 
-                  : caseData.circularityMatch === "Medium"
-                    ? "bg-yellow-500 text-white"
-                    : "bg-destructive text-destructive-foreground"
-              )}>
-                {caseData.circularityMatch.toUpperCase()}
-              </Badge>
-            </div>
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground mb-2">Verification</p>
-              <Badge className={cn(
-                "text-sm px-3 py-1 font-bold",
-                caseData.verificationCoverage >= 75 
-                  ? "bg-success text-success-foreground" 
-                  : "bg-yellow-500 text-white"
-              )}>
-                {caseData.verificationCoverage}% COMPLETE
-              </Badge>
-            </div>
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground mb-2">Procurement Suitability</p>
-              <Badge className={cn(
-                "text-sm px-3 py-1 font-bold",
-                caseData.readinessScore >= 70 
-                  ? "bg-success text-success-foreground" 
-                  : caseData.readinessScore >= 50
-                    ? "bg-yellow-500 text-white"
-                    : "bg-destructive text-destructive-foreground"
-              )}>
-                {caseData.readinessScore >= 70 ? "YES" : caseData.readinessScore >= 50 ? "CONDITIONAL" : "NO"}
-              </Badge>
-            </div>
-          </div>
-          
-          <div className="p-4 rounded-lg bg-background border-2 border-success/30">
-            <p className="text-sm font-semibold mb-2">Recommended Action</p>
-            <p className="text-sm text-foreground">
-              {caseData.readinessScore >= 70 
-                ? `Selected components are suitable for reuse in ${caseData.assetType.toLowerCase()} projects with ${caseData.tenderRequirements.technical.minSpan} span requirements.`
-                : caseData.readinessScore >= 50
-                  ? "Additional verification is recommended before proceeding to procurement."
-                  : "Further assessment required. Consider alternative components or additional inspections."}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Tender Requirements */}
       <Card className="mb-6">
         <CardHeader className="pb-3">
