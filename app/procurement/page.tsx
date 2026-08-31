@@ -85,7 +85,7 @@ export default function ProcurementPage() {
           <h1 className="text-2xl font-bold text-foreground">Procurement Case</h1>
         </div>
         <p className="text-muted-foreground">
-          Prepare procurement packages using verified component data and Digital Product Passports.
+          Prepare decision packages using evidence fitness, specialist assessments, and links to externally managed Digital Product Passports.
         </p>
       </div>
 

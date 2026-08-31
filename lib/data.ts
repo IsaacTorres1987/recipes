@@ -357,6 +357,55 @@ export const dashboardStats = {
   procurementReadinessAvg: 78
 }
 
+export type DecisionReadiness = "Ready" | "Ready with Restrictions" | "Not Ready" | "Unknown"
+export type EvidenceFitnessState = "Fit" | "Partial" | "Not Fit" | "Unknown"
+export type SpecialistAssessmentStatus = "Complete" | "Required" | "Pending" | "Not Required" | "Unknown"
+
+export interface EvidenceFitness {
+  completeness: { state: EvidenceFitnessState; summary: string }
+  currency: { state: EvidenceFitnessState; summary: string }
+  traceability: { state: EvidenceFitnessState; summary: string }
+}
+
+export interface SpecialistAssessment {
+  id: string
+  name: string
+  status: SpecialistAssessmentStatus
+  required: boolean
+  owner: string
+  summary: string
+}
+
+export interface DecisionSynthesis {
+  conclusion: string
+  basis: string[]
+  uncertainty: string[]
+}
+
+export interface DecisionRestriction {
+  id: string
+  label: string
+  status: "Open" | "Resolved" | "Unknown"
+  rationale: string
+}
+
+export interface OutstandingAction {
+  id: string
+  label: string
+  owner: string
+  status: "Open" | "In Progress" | "Complete" | "Unknown"
+}
+
+export interface DecisionPackageMetadata {
+  packageId: string
+  version: string
+  preparedFor: string
+  preparedAt: string
+  scope: string
+  externalVerificationBoundary: string
+  dppBoundary: string
+}
+
 export interface ProcurementCase {
   id: string
   projectName: string
@@ -372,7 +421,20 @@ export interface ProcurementCase {
   dppCoverage: number
   structuralEvidenceComplete: number
   circularityMatch: "High" | "Medium" | "Low"
+  /** Backward-compatible diagnostic only; never authoritative for decision readiness. */
   readinessScore: number
+  decisionReadiness?: {
+    state: DecisionReadiness
+    rationale: string
+    evidenceCoverage: { satisfied: number; total: number; unresolved: string[] }
+    uncertainty: string[]
+  }
+  evidenceFitness?: EvidenceFitness
+  specialistAssessments?: SpecialistAssessment[]
+  decisionSynthesis?: DecisionSynthesis
+  restrictions?: DecisionRestriction[]
+  outstandingActions?: OutstandingAction[]
+  decisionPackage?: DecisionPackageMetadata
   tenderRequirements: {
     technical: {
       minSpan: string
@@ -428,6 +490,26 @@ export const procurementCases: ProcurementCase[] = [
     structuralEvidenceComplete: 75,
     circularityMatch: "High",
     readinessScore: 82,
+    decisionReadiness: {
+      state: "Ready with Restrictions",
+      rationale: "Evidence requirements are 4/5 satisfied. The unresolved verifier assignment and a separate pending structural recalculation constrain use without blocking procurement preparation.",
+      evidenceCoverage: { satisfied: 4, total: 5, unresolved: ["Verifier assignment"] },
+      uncertainty: ["Structural recalculation is not yet complete"]
+    },
+    evidenceFitness: {
+      completeness: { state: "Partial", summary: "4 of 5 evidence requirements satisfied" },
+      currency: { state: "Fit", summary: "Inspection and material records are current for the case scope" },
+      traceability: { state: "Partial", summary: "DPP links are present; verifier assignment remains open" }
+    },
+    specialistAssessments: [{ id: "structural-recalculation", name: "Structural recalculation", status: "Pending", required: true, owner: "Structural engineer", summary: "Required before unrestricted structural reuse recommendation" }],
+    decisionSynthesis: {
+      conclusion: "Proceed with restrictions for tender preparation; do not treat this case as unrestricted structural approval.",
+      basis: ["Selected components meet the stated technical and circularity fit", "Four of five evidence requirements are satisfied"],
+      uncertainty: ["Verifier assignment remains outstanding", "Structural recalculation remains pending"]
+    },
+    restrictions: [{ id: "verification-authority", label: "External verifier assignment", status: "Open", rationale: "Independent verification responsibility is not yet assigned" }],
+    outstandingActions: [{ id: "assign-verifier", label: "Assign external verifier", owner: "Case owner", status: "Open" }, { id: "complete-recalculation", label: "Complete structural recalculation", owner: "Structural engineer", status: "In Progress" }],
+    decisionPackage: { packageId: "DP-N203-2026-01", version: "1.0", preparedFor: "Province of North Holland", preparedAt: "18 March 2026", scope: "Tender preparation decision support", externalVerificationBoundary: "Verification is performed by the appointed external authority, not CircuFax.", dppBoundary: "Digital Product Passports remain external records linked for reference; CircuFax does not issue or store them." },
     tenderRequirements: {
       technical: {
         minSpan: "20–30 m",

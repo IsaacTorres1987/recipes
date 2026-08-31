@@ -35,7 +35,7 @@ export default function VerificationPage() {
           <InfoTooltip content={tooltipDefinitions.verificationLayer} />
         </div>
         <p className="text-muted-foreground mb-4">
-          Track verification status and link to Digital Product Passports for all infrastructure components.
+          Track externally provided verification status and link to Digital Product Passports for infrastructure components.
         </p>
         
         {/* Verification Context */}
@@ -184,8 +184,8 @@ export default function VerificationPage() {
               <h3 className="font-semibold mb-1">About Verification</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Verified components have undergone inspection and assessment according to NEN 2767 standards. 
-                Each verification is anchored to a blockchain hash, ensuring tamper-proof records that can be 
-                independently validated through the Digital Product Passport.
+                Verification records may include an external reference or hash supplied by the appointed verifier. 
+                CircuFax presents that evidence for decision support; independent validation remains with the external verification and DPP systems.
               </p>
             </div>
           </div>
