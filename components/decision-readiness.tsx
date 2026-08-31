@@ -44,7 +44,7 @@ export function DecisionReadinessPanel({ caseData }: { caseData: ProcurementCase
         <CardContent className="grid gap-4 md:grid-cols-3">
           {Object.entries(fitness).map(([key, value]) => <div key={key} className="flex items-start gap-3 rounded-lg border border-border p-3">
             {value.state === "Fit" ? <CheckCircle2 className="h-5 w-5 text-success shrink-0" /> : <TriangleAlert className="h-5 w-5 text-yellow-600 shrink-0" />}
-            <div><p className="font-medium capitalize">{key}</p><Badge variant="outline" className="mt-1">{value.state}</Badge><p className="mt-2 text-xs text-muted-foreground">{value.summary}</p></div>
+            <div><p className="font-medium">{key.replace(/([A-Z])/g, " $1").replace(/^./, (letter) => letter.toUpperCase())}</p><Badge variant="outline" className="mt-1">{value.state}</Badge><p className="mt-2 text-xs text-muted-foreground">{value.summary}</p></div>
           </div>)}
         </CardContent>
       </Card>}

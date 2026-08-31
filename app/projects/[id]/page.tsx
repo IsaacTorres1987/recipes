@@ -291,7 +291,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   ) : (
                     <Circle className="h-4 w-4 text-muted-foreground" />
                   )}
-                  <span>Structural recalculation available</span>
+                  <span>Structural recalculation evidence requirement satisfied</span>
                 </li>
                 <li className="flex items-center gap-2">
                   {caseData.tenderRequirements.evidence.dppAvailable ? (
@@ -393,7 +393,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             Verified engineering data and condition assessments support procurement teams in evaluating reuse opportunities and preparing tender documentation.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Components in this case have been selected based on technical fit, verification status, and circularity potential. Digital Product Passports provide full traceability for tender requirements.
+            Components in this case have been selected based on technical fit, verification status, and circularity potential. Digital Product Passports provide traceability and verification references that can support tender requirements.
           </p>
         </CardContent>
       </Card>
@@ -477,27 +477,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             <div className="pt-4 border-t border-primary/20">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold flex items-center gap-1">
-                  Procurement Readiness Score
-                  <InfoTooltip content={tooltipDefinitions.procurementReadiness} />
-                </span>
+                <span className="font-semibold">Outstanding Actions</span>
+                <Badge variant="outline">{caseData.outstandingActions?.filter((action) => action.status !== "Complete").length ?? 0}</Badge>
               </div>
-              <div className="flex items-center gap-3">
-                <span className={cn(
-                  "text-4xl font-bold",
-                  caseData.readinessScore >= 80 ? "text-success" :
-                  caseData.readinessScore >= 60 ? "text-yellow-600" : "text-destructive"
-                )}>
-                  {caseData.readinessScore}
-                </span>
-                <span className="text-2xl text-muted-foreground">/ 100</span>
-              </div>
-              <Progress 
-                value={caseData.readinessScore} 
-                className="h-3 mt-2"
-              />
-              <p className="text-xs text-muted-foreground mt-3">
-                This score indicates how well the selected components meet technical, verification, and circularity requirements for project and procurement use.
+              <p className="text-sm text-muted-foreground">
+                Open actions remain before this case can support an unrestricted decision.
               </p>
             </div>
           </CardContent>

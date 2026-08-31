@@ -35,12 +35,12 @@ export default function HomePage() {
             <FeatureCard
               icon={Database}
               title="Component Registry"
-              description="Centralized database of infrastructure components with detailed specifications and metadata."
+              description="Component records with detailed specifications and metadata, designed for future federated evidence access."
             />
             <FeatureCard
               icon={ShieldCheck}
               title="Verification"
-              description="Blockchain-anchored verification for trusted Digital Product Passports."
+              description="References to externally provided verification and Digital Product Passport services such as Circularise."
             />
             <FeatureCard
               icon={BarChart3}
