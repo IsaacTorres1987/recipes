@@ -274,7 +274,7 @@ export default function ProjectReportPage() {
             The components selected for this procurement case have verified structural capacity and inspection records where applicable.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            They may be referenced in procurement documentation as reusable structural elements for infrastructure replacement projects. Verified components include Digital Product Passports that provide full traceability for tender requirements.
+            They may be referenced in procurement documentation as reusable structural elements for infrastructure replacement projects. Linked Digital Product Passports provide traceability and verification references that can support tender requirements.
           </p>
           <div className="flex flex-wrap gap-2">
             {caseData.components.filter(c => c.verificationStatus === "Verified").map((component) => (
@@ -297,9 +297,9 @@ export default function ProjectReportPage() {
         </CardHeader>
         <CardContent>
           <p className="text-foreground leading-relaxed mb-4">
-            Complete verification records, inspection data, and structural assessments are available through the 
-            component Digital Product Passports. These documents provide full traceability and can be included 
-            in tender documentation as evidence of component suitability.
+Verification records, inspection data, and structural assessment references may be available through
+            externally provided Digital Product Passports. These records provide traceability and verification references
+            that can support tender documentation; they do not constitute complete Decision Lineage.
           </p>
           <Button variant="outline" className="gap-2">
             Open Digital Product Passports

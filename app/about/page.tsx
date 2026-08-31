@@ -25,12 +25,12 @@ export default function AboutPage() {
             <CapabilityCard
               icon={Database}
               title="Component Registry"
-              description="Centralized database for infrastructure components with detailed specifications, material properties, and geometric data."
+              description="Component Registry for structured infrastructure records, with a path toward federated evidence access."
             />
             <CapabilityCard
               icon={ShieldCheck}
               title="Digital Product Passports"
-              description="Blockchain-anchored verification system ensuring data integrity and traceability for all component information."
+              description="References to externally provided verification and Digital Product Passport services, such as Circularise, alongside CircuFax decision support."
             />
             <CapabilityCard
               icon={FileCheck}
@@ -70,8 +70,8 @@ export default function AboutPage() {
             />
             <StepCard
               number={3}
-              title="Verification & DPP Creation"
-              description="Component data is verified and anchored to create tamper-proof Digital Product Passports."
+              title="Evidence Access & External Verification"
+              description="CircuFax organizes component records and links to federated evidence sources and externally provided verification or Digital Product Passport services such as Circularise."
             />
             <StepCard
               number={4}

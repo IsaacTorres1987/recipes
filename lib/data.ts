@@ -362,9 +362,9 @@ export type EvidenceFitnessState = "Fit" | "Partial" | "Not Fit" | "Unknown"
 export type SpecialistAssessmentStatus = "Complete" | "Required" | "Pending" | "Not Required" | "Unknown"
 
 export interface EvidenceFitness {
-  completeness: { state: EvidenceFitnessState; summary: string }
-  currency: { state: EvidenceFitnessState; summary: string }
-  traceability: { state: EvidenceFitnessState; summary: string }
+  reliabilityAndAssurance: { state: EvidenceFitnessState; summary: string }
+  relevanceAndContextualFit: { state: EvidenceFitnessState; summary: string }
+  sufficiencyAndGaps: { state: EvidenceFitnessState; summary: string }
 }
 
 export interface SpecialistAssessment {
@@ -497,9 +497,9 @@ export const procurementCases: ProcurementCase[] = [
       uncertainty: ["Structural recalculation is not yet complete"]
     },
     evidenceFitness: {
-      completeness: { state: "Partial", summary: "4 of 5 evidence requirements satisfied" },
-      currency: { state: "Fit", summary: "Inspection and material records are current for the case scope" },
-      traceability: { state: "Partial", summary: "DPP links are present; verifier assignment remains open" }
+      reliabilityAndAssurance: { state: "Partial", summary: "Inspection and material records are available; external verifier assignment remains open" },
+      relevanceAndContextualFit: { state: "Fit", summary: "Evidence is current and relevant to the N203 tender preparation scope" },
+      sufficiencyAndGaps: { state: "Partial", summary: "4 of 5 evidence requirements are satisfied; verifier assignment is unresolved" }
     },
     specialistAssessments: [{ id: "structural-recalculation", name: "Structural recalculation", status: "Pending", required: true, owner: "Structural engineer", summary: "Required before unrestricted structural reuse recommendation" }],
     decisionSynthesis: {

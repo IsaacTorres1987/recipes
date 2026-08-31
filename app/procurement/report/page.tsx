@@ -182,9 +182,9 @@ export default function ProcurementReportPage() {
         </CardHeader>
         <CardContent>
           <p className="text-foreground leading-relaxed mb-4">
-            Complete verification records, inspection data, and structural assessments are available through the 
-            component's Digital Product Passport. This document provides full traceability and can be included 
-            in tender documentation.
+Verification records, inspection data, and structural assessment references may be available through the
+            component's externally provided Digital Product Passport. It provides traceability and verification references
+            that can support tender documentation, subject to the stated case restrictions.
           </p>
           <Button variant="outline" className="gap-2">
             Open Digital Product Passport
