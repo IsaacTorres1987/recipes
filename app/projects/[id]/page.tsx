@@ -33,6 +33,7 @@ import {
 import { procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { InfoTooltip, tooltipDefinitions } from "@/components/info-tooltip"
+import { DecisionReadinessPanel } from "@/components/decision-readiness"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -376,6 +377,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
         </CardContent>
       </Card>
+
+      <DecisionReadinessPanel caseData={caseData} />
 
       {/* Procurement Decision Support */}
       <Card className="mb-6 bg-muted/30">

@@ -33,6 +33,7 @@ import { useToast } from "@/hooks/use-toast"
 import { procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { notFound } from "next/navigation"
+import { DecisionReadinessPanel, DecisionPackagePanel } from "@/components/decision-readiness"
 
 export default function ProjectReportPage() {
   const params = useParams()
@@ -100,7 +101,7 @@ export default function ProjectReportPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground">
-              Procurement Component Assessment Report
+              Decision Package — Procurement Assessment
             </h1>
             <p className="text-muted-foreground text-sm">
               Generated on {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
@@ -170,7 +171,7 @@ export default function ProjectReportPage() {
               <p className="font-semibold">{caseData.designLife}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Procurement Readiness</p>
+              <p className="text-sm text-muted-foreground mb-1">Readiness Diagnostic (secondary)</p>
               <div className="flex items-center gap-2 mt-1">
                 <span className={cn(
                   "text-2xl font-bold",
@@ -185,6 +186,9 @@ export default function ProjectReportPage() {
           </div>
         </CardContent>
       </Card>
+
+      <DecisionReadinessPanel caseData={caseData} />
+      <DecisionPackagePanel caseData={caseData} />
 
       {/* Selected Components */}
       <Card className="mb-6">

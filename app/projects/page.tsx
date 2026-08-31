@@ -128,17 +128,11 @@ export default function ProcurementCasesPage() {
 
               <div className="mt-auto pt-4 border-t border-border">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-muted-foreground">Procurement Readiness</span>
-                  <span className={cn(
-                    "text-sm font-semibold",
-                    caseItem.readinessScore >= 80 ? "text-success" :
-                    caseItem.readinessScore >= 60 ? "text-yellow-600" : "text-destructive"
-                  )}>
-                    {caseItem.readinessScore}/100
-                  </span>
+                  <span className="text-sm text-muted-foreground">Decision Readiness</span>
+                  <Badge variant="outline">{caseItem.decisionReadiness?.state ?? "Unknown"}</Badge>
                 </div>
                 <Progress 
-                  value={caseItem.readinessScore} 
+                  value={caseItem.decisionReadiness ? (caseItem.decisionReadiness.evidenceCoverage.satisfied / caseItem.decisionReadiness.evidenceCoverage.total) * 100 : 0} 
                   className="h-2 mb-4"
                 />
                 <Link href={`/projects/${caseItem.id}`}>
