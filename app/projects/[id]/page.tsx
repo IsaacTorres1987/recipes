@@ -277,38 +277,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <h4 className="font-semibold text-sm">Evidence Requirements</h4>
               </div>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  {caseData.tenderRequirements.evidence.inspectionReport ? (
-                    <CheckCircle2 className="h-4 w-4 text-success" />
-                  ) : (
-                    <Circle className="h-4 w-4 text-muted-foreground" />
-                  )}
-                  <span>Inspection report available</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  {caseData.tenderRequirements.evidence.structuralRecalculation ? (
-                    <CheckCircle2 className="h-4 w-4 text-success" />
-                  ) : (
-                    <Circle className="h-4 w-4 text-muted-foreground" />
-                  )}
-                  <span>Structural recalculation evidence requirement satisfied</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  {caseData.tenderRequirements.evidence.dppAvailable ? (
-                    <CheckCircle2 className="h-4 w-4 text-success" />
-                  ) : (
-                    <Circle className="h-4 w-4 text-muted-foreground" />
-                  )}
-                  <span>DPP available</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  {caseData.tenderRequirements.evidence.verificationAuthority ? (
-                    <CheckCircle2 className="h-4 w-4 text-success" />
-                  ) : (
-                    <Circle className="h-4 w-4 text-muted-foreground" />
-                  )}
-                  <span>Verification authority identified</span>
-                </li>
+                {evidenceItems.map((item) => (
+                  <li key={item.key} className="flex items-center gap-2">
+                    {item.checked ? (
+                      <CheckCircle2 className="h-4 w-4 text-success" />
+                    ) : (
+                      <Circle className="h-4 w-4 text-muted-foreground" />
+                    )}
+                    <span>{item.label}</span>
+                    <span className="ml-auto text-xs text-muted-foreground">
+                      {item.checked ? "Satisfied" : "Unresolved"}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
