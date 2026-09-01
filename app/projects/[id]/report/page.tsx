@@ -159,7 +159,7 @@ export default function ProjectReportPage() {
 
           <Separator className="my-6" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <p className="text-sm text-muted-foreground mb-1">Procurement Stage</p>
               <Badge className="bg-primary/10 text-primary border-primary/20">
@@ -169,19 +169,6 @@ export default function ProjectReportPage() {
             <div>
               <p className="text-sm text-muted-foreground mb-1">Design Life Requirement</p>
               <p className="font-semibold">{caseData.designLife}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Readiness Diagnostic (secondary)</p>
-              <div className="flex items-center gap-2 mt-1">
-                <span className={cn(
-                  "text-2xl font-bold",
-                  caseData.readinessScore >= 80 ? "text-success" :
-                  caseData.readinessScore >= 60 ? "text-yellow-600" : "text-destructive"
-                )}>
-                  {caseData.readinessScore}
-                </span>
-                <span className="text-sm text-muted-foreground">/ 100</span>
-              </div>
             </div>
           </div>
         </CardContent>

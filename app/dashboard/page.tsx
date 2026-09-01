@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Database, ShieldCheck, Activity, Recycle, FolderKanban, ArrowRight, Gauge, Building2, Share2, Lightbulb, FileCheck, ChevronRight } from "lucide-react"
 import { dashboardStats, procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
@@ -149,10 +148,6 @@ export default function DashboardPage() {
         return "bg-muted text-muted-foreground border-border"
     }
   }
-
-  const avgReadiness = Math.round(
-    procurementCases.reduce((sum, c) => sum + c.readinessScore, 0) / procurementCases.length
-  )
 
   return (
     <div className="p-6 lg:p-8">
@@ -357,10 +352,6 @@ export default function DashboardPage() {
               <p className="text-xs text-muted-foreground mb-1">Avg. Condition</p>
               <p className="text-lg font-bold">2.75</p>
             </div>
-            <div className="p-3 rounded-lg bg-background border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Readiness Score</p>
-              <p className="text-lg font-bold text-success">82%</p>
-            </div>
           </div>
           
           {/* Decision Panel */}
@@ -429,23 +420,6 @@ export default function DashboardPage() {
 
         <Card>
           <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-success/10">
-                <Gauge className="h-6 w-6 text-success" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold">{avgReadiness}%</p>
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  Avg Procurement Readiness
-                  <InfoTooltip content={tooltipDefinitions.procurementReadiness} />
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-lg bg-yellow-500/10">
@@ -499,15 +473,9 @@ export default function DashboardPage() {
                     <span>|</span>
                     <span>{caseItem.verificationCoverage}% verified</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Progress value={caseItem.readinessScore} className="flex-1 h-2" />
-                    <span className={cn(
-                      "text-sm font-semibold min-w-[50px] text-right",
-                      caseItem.readinessScore >= 80 ? "text-success" :
-                      caseItem.readinessScore >= 60 ? "text-yellow-600" : "text-destructive"
-                    )}>
-                      {caseItem.readinessScore}/100
-                    </span>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm text-muted-foreground">Decision Readiness</span>
+                    <Badge variant="outline">{caseItem.decisionReadiness?.state ?? "Unknown"}</Badge>
                   </div>
                 </div>
               </div>
