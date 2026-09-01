@@ -154,7 +154,7 @@ export default function DashboardPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-foreground mb-2">CircuFax</h1>
         <p className="text-lg text-muted-foreground">
-          Infrastructure Component Data & Decision Support
+          Infrastructure Component Data and Decision Support
         </p>
       </div>
 
@@ -441,7 +441,7 @@ export default function DashboardPage() {
       <Card className="mb-8">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base">Project & Procurement Overview</CardTitle>
+            <CardTitle className="text-base">Project and Procurement Overview</CardTitle>
             <Link href="/projects">
               <Button variant="outline" size="sm" className="gap-2">
                 View All Cases

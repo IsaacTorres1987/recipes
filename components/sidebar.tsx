@@ -10,7 +10,7 @@ const navItems = [
   { href: "/assets", label: "Asset Map", icon: Map },
   { href: "/registry", label: "Component Registry", icon: Database, description: "Data Layer" },
   { href: "/verification", label: "Verification Layer", icon: ShieldCheck, description: "DPP" },
-  { href: "/projects", label: "Projects & Procurement", icon: FolderKanban, description: "Decision Layer" },
+  { href: "/projects", label: "Projects and Procurement", icon: FolderKanban, description: "Decision Layer" },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/about", label: "About", icon: Info },
 ]
@@ -54,7 +54,7 @@ export function Sidebar() {
       </nav>
       <div className="p-4 border-t border-sidebar-border">
         <p className="text-xs text-sidebar-foreground/50">
-          Supply Chain Data &amp; Decision Support
+          Supply Chain Data and Decision Support
         </p>
       </div>
     </aside>

@@ -50,7 +50,7 @@ export default function ProcurementCasesPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <FolderKanban className="h-6 w-6 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground">Projects & Procurement</h1>
+          <h1 className="text-2xl font-bold text-foreground">Projects and Procurement</h1>
         </div>
         <p className="text-muted-foreground mb-4">
           This section demonstrates how infrastructure component data can be used in real project contexts.
