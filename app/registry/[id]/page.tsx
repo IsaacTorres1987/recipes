@@ -285,12 +285,12 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </CardContent>
       </Card>
 
-      {/* Project & Procurement Context */}
+      {/* Project and Procurement Context */}
       <Card className="mb-8 bg-muted/30">
         <CardHeader className="pb-4">
           <CardTitle className="text-base flex items-center gap-2">
             <FileText className="h-4 w-4 text-primary" />
-            Project & Procurement Context
+            Project and Procurement Context
           </CardTitle>
         </CardHeader>
         <CardContent>

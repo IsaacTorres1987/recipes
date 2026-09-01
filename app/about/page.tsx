@@ -65,12 +65,12 @@ export default function AboutPage() {
             />
             <StepCard
               number={2}
-              title="Inspection & Assessment"
+              title="Inspection and Assessment"
               description="Certified inspectors conduct NEN 2767 condition assessments and structural capacity evaluations."
             />
             <StepCard
               number={3}
-              title="Evidence Access & External Verification"
+              title="Evidence Access and External Verification"
               description="CircuFax organizes component records and links to federated evidence sources and externally provided verification or Digital Product Passport services such as Circularise."
             />
             <StepCard
@@ -83,7 +83,7 @@ export default function AboutPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Standards & Compliance</CardTitle>
+            <CardTitle className="text-base">Standards and Compliance</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

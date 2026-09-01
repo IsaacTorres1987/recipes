@@ -132,7 +132,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <h1 className="text-2xl font-bold text-foreground">
                 {caseData.projectName}
               </h1>
-              <p className="text-muted-foreground">Project & Procurement Workspace</p>
+              <p className="text-muted-foreground">Project and Procurement Workspace</p>
             </div>
           </div>
           <Badge 
