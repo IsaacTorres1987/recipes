@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { 
   FolderKanban, 
   Building2, 
@@ -131,10 +130,6 @@ export default function ProcurementCasesPage() {
                   <span className="text-sm text-muted-foreground">Decision Readiness</span>
                   <Badge variant="outline">{caseItem.decisionReadiness?.state ?? "Unknown"}</Badge>
                 </div>
-                <Progress 
-                  value={caseItem.decisionReadiness ? (caseItem.decisionReadiness.evidenceCoverage.satisfied / caseItem.decisionReadiness.evidenceCoverage.total) * 100 : 0} 
-                  className="h-2 mb-4"
-                />
                 <Link href={`/projects/${caseItem.id}`}>
                   <Button className="w-full gap-2">
                     Open Case
