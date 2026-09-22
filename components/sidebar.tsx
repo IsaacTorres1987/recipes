@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Home, Database, Building2, ShieldCheck, Info, LayoutDashboard, FileText, Map, PlusCircle, FolderKanban, BarChart3 } from "lucide-react"
+import { Database, ShieldCheck, Info, LayoutDashboard, Map, FolderKanban, BarChart3, Scale } from "lucide-react"
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -11,6 +11,7 @@ const navItems = [
   { href: "/registry", label: "Component Registry", icon: Database, description: "Data Layer" },
   { href: "/verification", label: "Verification Layer", icon: ShieldCheck, description: "DPP" },
   { href: "/projects", label: "Projects and Procurement", icon: FolderKanban, description: "Decision Layer" },
+  { href: "/decision-support", label: "Decision Support", icon: Scale, description: "Decision Basis" },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/about", label: "About", icon: Info },
 ]

@@ -86,6 +86,14 @@ export default function ProcurementCasesPage() {
             </p>
           </CardContent>
         </Card>
+        <div className="mt-4">
+          <Link href="/decision-support">
+            <Button variant="outline" className="gap-2">
+              Open Decision Support
+              <ArrowRight data-icon="inline-end" />
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
