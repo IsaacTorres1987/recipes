@@ -9,9 +9,12 @@ import {
   Building2, 
   Users, 
   Box, 
-  ShieldCheck, 
+  ShieldCheck,
   ArrowRight,
-  Clock
+  FileCheck2,
+  ClipboardCheck,
+  ListChecks,
+  AlertTriangle
 } from "lucide-react"
 import { procurementCases } from "@/lib/data"
 import { cn } from "@/lib/utils"
@@ -125,14 +128,50 @@ export default function ProcurementCasesPage() {
                 </div>
               </div>
 
-              <div className="mt-auto pt-4 border-t border-border">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-muted-foreground">Decision Readiness</span>
-                  <Badge variant="outline">{caseItem.decisionReadiness?.state ?? "Unknown"}</Badge>
+              <div className="mb-4 rounded-lg border border-border bg-muted/20 p-3">
+                <div className="mb-3 flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Decision Readiness</p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">
+                      {caseItem.decisionReadiness?.state ?? "Unknown"}
+                    </p>
+                  </div>
+                  <Badge variant="outline">Case state</Badge>
                 </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="flex items-center gap-2 rounded-md bg-background/70 p-2">
+                    <FileCheck2 className="h-4 w-4 text-muted-foreground" />
+                    <span>
+                      <span className="block font-medium text-foreground">
+                        {caseItem.decisionReadiness?.evidenceCoverage.satisfied ?? 0} of {caseItem.decisionReadiness?.evidenceCoverage.total ?? 0}
+                      </span>
+                      <span className="text-muted-foreground">Evidence requirements</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-md bg-background/70 p-2">
+                    <ClipboardCheck className="h-4 w-4 text-muted-foreground" />
+                    <span>
+                      <span className="block font-medium text-foreground">
+                        {caseItem.specialistAssessments?.filter((assessment) => assessment.status === "Complete").length ?? 0} of {caseItem.specialistAssessments?.filter((assessment) => assessment.required).length ?? 0}
+                      </span>
+                      <span className="text-muted-foreground">Specialist assessments</span>
+                    </span>
+                  </div>
+                </div>
+                {(caseItem.restrictions?.length || caseItem.outstandingActions?.length) ? (
+                  <div className="mt-3 flex items-start gap-2 border-t border-border pt-3 text-xs text-muted-foreground">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span>
+                      {caseItem.restrictions?.length ?? 0} restriction{caseItem.restrictions?.length === 1 ? "" : "s"} and {caseItem.outstandingActions?.length ?? 0} outstanding action{caseItem.outstandingActions?.length === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="mt-auto border-t border-border pt-4">
                 <Link href={`/projects/${caseItem.id}`}>
                   <Button className="w-full gap-2">
-                    Open Case
+                    Open Decision Case
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
